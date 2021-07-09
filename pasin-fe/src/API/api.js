@@ -1,4 +1,4 @@
-const rootURL = 'http://localhost:8000';
+const rootURL = process.env.REACT_APP_BACKEND_HOST;
 
 const token = localStorage.getItem("token");
 
