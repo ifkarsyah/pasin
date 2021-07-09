@@ -1,0 +1,10 @@
+version: '3'
+services:
+  front:
+    build: .
+    command: serve -s build
+    volumes:
+        - .:/usr/app/
+        - /usr/app/node_modules
+    ports:
+        - "5000:5000"
