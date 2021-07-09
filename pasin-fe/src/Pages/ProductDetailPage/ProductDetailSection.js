@@ -45,7 +45,7 @@ function ProductDetailSection(props) {
     <Col xs={8} className="d-flex flex-column justify-content-center">
       <h3 className="font-weight-bolder">{productResult["name"]}</h3>
       <StarRating rating={4.8} />
-      <p>{productResult["detail"]}</p>
+      <p>{productResult["description"]}</p>
     </Col>
   </>;
 }
