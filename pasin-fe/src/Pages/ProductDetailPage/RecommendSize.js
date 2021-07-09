@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import React, { useEffect, useState } from "react";
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
-import { getRecommendedSize } from '../../API/api';
+import { getRecommendedSize, getUserPreferenceList } from '../../API/api';
 
 
 function RecommendSize(props) {
@@ -13,7 +13,18 @@ function RecommendSize(props) {
   const handleModalClose = () => setShowModal(false);
   const handleModalShow = () => setShowModal(true);
 
-  // other option handling
+  // cek udah punya atau belum
+  const [userPreference, setUserPreference] = useState([]);
+  useEffect(() => {
+    let mounted = true;
+    getUserPreferenceList(props["productId"])
+      .then(results => {
+        if (mounted) {
+          setRecommendedSize(results.data)
+        }
+      })
+    return () => mounted = false;
+  }, [])
 
   // recommend
   const [recommendedSize, setRecommendedSize] = useState();
@@ -36,7 +47,6 @@ function RecommendSize(props) {
       </Button>
 
       <Modal show={showModal} onHide={handleModalClose}>
-
         <Modal.Header closeButton>
           <Modal.Title>
             Kami Merekomendasikan Kamu untuk Memilih Nomor ....

@@ -1,0 +1,55 @@
+INSERT INTO public.product_stocks (product_id,rel_bs_id,stock) VALUES
+	 (1,6,3),
+	 (1,7,4),
+	 (1,8,2),
+	 (1,9,7),
+	 (1,10,8),
+	 (2,6,5),
+	 (2,7,3),
+	 (2,8,7),
+	 (2,9,8),
+	 (2,10,5);
+INSERT INTO public.product_stocks (product_id,rel_bs_id,stock) VALUES
+	 (3,1,5),
+	 (3,2,5),
+	 (3,3,6),
+	 (3,4,4),
+	 (3,5,7),
+	 (4,16,5),
+	 (4,17,3),
+	 (4,18,8),
+	 (4,19,9),
+	 (4,20,10);
+INSERT INTO public.product_stocks (product_id,rel_bs_id,stock) VALUES
+	 (5,16,11),
+	 (5,17,20),
+	 (5,18,5),
+	 (5,19,9),
+	 (5,20,80),
+	 (6,11,5),
+	 (6,12,4),
+	 (6,13,6),
+	 (6,14,8),
+	 (6,15,2);
+INSERT INTO public.product_stocks (product_id,rel_bs_id,stock) VALUES
+	 (7,26,5),
+	 (7,27,3),
+	 (7,28,9),
+	 (7,29,10),
+	 (7,30,4),
+	 (8,21,4),
+	 (8,22,3),
+	 (8,23,6),
+	 (8,24,7),
+	 (8,25,8);
+INSERT INTO public.product_stocks (product_id,rel_bs_id,stock) VALUES
+	 (9,36,6),
+	 (9,37,5),
+	 (9,38,3),
+	 (9,39,2),
+	 (9,40,2),
+	 (10,31,3),
+	 (10,32,3),
+	 (10,33,4),
+	 (10,34,5),
+	 (10,35,6);
