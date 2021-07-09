@@ -24,7 +24,7 @@ CREATE TABLE rel_brand_size (
 	bs_id serial PRIMARY KEY,
 	brand_id INT,
     size INT,
-    length INT
+    length float8
 );
 
 
@@ -41,7 +41,7 @@ CREATE TABLE rel_user_shoe_size (
     uss_id serial PRIMARY KEY,
 	user_id INT NOT NULL,
 	rel_bs_id INT NOT NULL,
-	loosey_size INT NOT NULL,
+	loosey_size float8 NOT NULL,
     FOREIGN KEY (user_id) REFERENCES accounts(user_id) ON UPDATE CASCADE ON DELETE RESTRICT,
     FOREIGN KEY (rel_bs_id) REFERENCES rel_brand_size(bs_id) ON UPDATE CASCADE ON DELETE RESTRICT  
 );

@@ -1,21 +1,11 @@
-let express = require('express')
-let router = express.Router()
+const express = require('express')
+const authorize = require("../middlewares/authorization");
+const router = express.Router()
 
-router.use('/login', require('./login'))
 
 router.use('/product', require('./product'))
 
-router.use('/preference', require('./preference'))
-
-router.get('recommendation/:productId', function(req, res){
-    res.json(
-        {
-            status: "success",
-            product_id: req.params.productId,
-            reccomendation: "reserved"
-        }
-    )
-})
+router.use('/preference', authorize, require('./preference'))
 
 router.use('/user', require('./user'))
 

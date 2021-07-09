@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const client = require('../../database/db')
 const { getQueryObject, calculateRecommendation } = require('../../helpers/helpers')
+const authorize = require("../../middlewares/authorization");
 
 const { 
     productsQuery, 
@@ -15,13 +16,24 @@ const {
 
 router.get('/all', async function(req, res){
     const { limit, offset } = req.query;
-    const result = await client.query(productsQuery,[limit,offset]);
-    res.json(
-        {
-            status: "success", 
-            data: result.rows
-        }
-    )
+    try{
+        const result = await client.query(productsQuery,[limit,offset]);
+        res.json(
+            {
+                status: 200,
+                message: "success", 
+                data: result.rows
+            }
+        )
+    }catch(error){
+        res.status(500).json(
+            {
+                status: 500,
+                message: error.message,
+                data: []
+            }
+        )
+    }
 })
 
 router.get('/:id', async (req, res) => {
@@ -31,9 +43,10 @@ router.get('/:id', async (req, res) => {
     
     if (result.rowCount == 0){
         res.status(404).json(
-            {
-                status: "no product found",
-                code: 404
+            {   
+                status: 404,
+                message: "no product found",
+                data: []
             }
         )
     }else if (result.rowCount > 0){
@@ -43,47 +56,71 @@ router.get('/:id', async (req, res) => {
 
         res.status(200).json(
             {
-                id: product.id,
-                name: product.name,
-                price: product.price,
-                photo: product.photo_url,
-                description: product.description,
-                rating: product.rating,
-                size_list: size_list
+                status: 200,
+                message: "success",
+                data: [{
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    photo: product.photo_url,
+                    description: product.description,
+                    rating: product.rating,
+                    size_list: size_list
+                }]
             }
         )
     }
     
 })
 
-router.get('/brand/all', async function(req, res){
-    const result = await client.query(brandQuery)
+router.get('/brand/all', authorize, async function(req, res){
+    try{
+        const result = await client.query(brandQuery)
 
-    res.json(
-        {
-            status: "success",
-            data: result.rows
-        }
-    )
+        res.json(
+            {
+                status: 200,
+                message: "success",
+                data: result.rows
+            }
+        )
+    }catch(error){
+        res.status(500).json(
+            {
+                status: 500,
+                message: error.message,
+                data: []
+            }
+        )
+    }
 })
 
-router.get('/brand/:id', async function(req, res){
+router.get('/brand/:id', authorize, async function(req, res){
     const id = req.params.id
 
-    const result = await client.query(brandSize, [id])
-
-
-    res.status(200).json(
-        {
-            status: 200,
-            message: "success",
-            data: result.rows
-        }
-    )
+    try{
+        const result = await client.query(brandSize, [id]);
+        res.status(200).json(
+            {
+                status: 200,
+                message: "success",
+                data: result.rows
+            }
+        )
+    }catch(error){
+        res.status(500).json(
+            {
+                status: 500,
+                message: error.message,
+                data: []
+            }
+        )
+    }
 })
 
-router.get('/:id/recommendation', async function(req, res){
-    const id = req.params.id
+router.get('/:id/recommendation', authorize, async function(req, res){
+    const id = req.params.id;
+    const user_id = req.user.id;
     
     const productCheck = await client.query(productCheckQuery, [id])
 
@@ -100,7 +137,7 @@ router.get('/:id/recommendation', async function(req, res){
 
         let sizeLists = getQueryObject(result)
 
-        let userSize = (await client.query(userSizeQuery, [1])).rows[0]
+        let userSize = (await client.query(userSizeQuery, [user_id])).rows[0]
 
         let recommendation = calculateRecommendation(sizeLists, userSize)
 
