@@ -3,6 +3,8 @@ import Container from "react-bootstrap/Container";
 
 import MyPreferenceCard from "./MyPreferenceCard";
 
+import { getUserPreferenceList } from "../../API/api";
+
 const myPreferenceListResults = [
   {
     "id": 1,
@@ -55,17 +57,24 @@ const myPreferenceListResults = [
 ]
 
 function MyPreferenceList() {
-  const [myPreferenceList, setMyPreferenceList] = useState(myPreferenceListResults);
-
+  // user preference list
+  const [userShoeSizePreference, setUserShoeSizePreference] = useState([]);
   useEffect(() => {
-    (async () => {
-      setMyPreferenceList(myPreferenceListResults);
-    })();
-  }, []);
+    let mounted = true;
+    getUserPreferenceList()
+      .then(results => {
+        if (mounted) {
+          { console.log("aaaaaaaaa") }
+          { console.log(results) }
+          setUserShoeSizePreference(results.data)
+        }
+      })
+    return () => mounted = false;
+  }, [])
 
   return (
     <Container fluid={true} className="d-flex flex-wrap font-weight-bold">
-      {myPreferenceListResults.map(pref =>
+      {userShoeSizePreference.map(pref =>
         <MyPreferenceCard key={pref['id']} pref={pref}
         />)}
     </Container>
