@@ -64,8 +64,6 @@ function MyPreferenceList() {
     getUserPreferenceList()
       .then(results => {
         if (mounted) {
-          { console.log("aaaaaaaaa") }
-          { console.log(results) }
           setUserShoeSizePreference(results.data)
         }
       })

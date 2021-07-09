@@ -1,6 +1,6 @@
 const rootURL = 'http://localhost:8000';
 
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxfSwiaWF0IjoxNjI1ODQ4NjAwLCJleHAiOjE2MjU4NTU4MDB9.OpWrYd2xilHVqBq33lB_elBKBucLOmB8R5ZgzKWlaLM'
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyfSwiaWF0IjoxNjI1ODU2MzYxLCJleHAiOjE2MjU5NDI3NjF9.ME_eEXMGNstaaF5HoZYScyT1OiykhPZBTjd2uWm3gNI'
 
 // authentication
 export function authLogin(username, password) {
@@ -52,7 +52,11 @@ export function getBrandList() {
 
 export function getSizeListByBrandId(brandId) {
   const url = rootURL + '/api/product/brand/' + brandId;
-  return fetch(url)
+  return fetch(url, {
+    headers: {
+      'Authorization': 'Bearer ' + token
+    },
+  })
     .then(data => data.json())
 }
 
@@ -62,6 +66,18 @@ export function getRecommendedSize(productId) {
     headers: {
       'Authorization': 'Bearer ' + token
     },
+  })
+    .then(data => data.json())
+}
+
+export function addPreference(params) {
+  const url = rootURL + '/api/preference/addPreference';
+  return fetch(url, {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer ' + token
+    },
+    body: JSON.stringify(params)
   })
     .then(data => data.json())
 }

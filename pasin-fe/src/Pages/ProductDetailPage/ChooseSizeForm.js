@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import RecommendSize from './RecommendSize';
 import TambahPreferensiPopupForm from "../../Components/TambahPreferensiPopupForm";
@@ -19,20 +19,9 @@ function ChooseSizeForm(props) {
             <Form.Label>Size</Form.Label>
             <Form.Control as="select">
               <option selected disabled>Pilih size</option>
-              {/* {props["size_list"].map(ele =>
+              {props.sizeList.map(ele =>
                 <option key={ele["bs_id"]}>{ele["size"]}</option>
-              )} */}
-              <option>35</option>
-              <option>36</option>
-              <option>37</option>
-              <option>38</option>
-              <option>39</option>
-              <option>40</option>
-              <option>41</option>
-              <option>42</option>
-              <option>43</option>
-              <option>44</option>
-              <option>45</option>
+              )}
             </Form.Control>
           </Form.Group>
 
@@ -41,7 +30,7 @@ function ChooseSizeForm(props) {
           </p>
 
           <div className="mb-5">
-            <TambahPreferensiPopupForm />
+            <TambahPreferensiPopupForm sizeList={props.sizeList} />
           </div>
 
           <Row>
