@@ -1,6 +1,20 @@
 const rootURL = 'http://localhost:8000';
 
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxfSwiaWF0IjoxNjI1ODUwNTAyLCJleHAiOjE2MjU4NTc3MDJ9.grAPtmHP5iNXmYqJQL9KohcUH0kIcL5AIQr7Td3-2IQ'
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxfSwiaWF0IjoxNjI1ODQ4NjAwLCJleHAiOjE2MjU4NTU4MDB9.OpWrYd2xilHVqBq33lB_elBKBucLOmB8R5ZgzKWlaLM'
+
+// authentication
+export function authLogin(username, password) {
+  const url = rootURL + '/api/user/login';
+  return fetch(url)
+    .then(data => data.json())
+}
+
+export function authLogout() {
+  const url = rootURL + '/api/user/logout';
+  return fetch(url)
+    .then(data => data.json())
+}
+
 // all
 export function getUser(userId) {
   const url = rootURL + '/api/user';
@@ -28,7 +42,11 @@ export function getProductOne(productId) {
 
 export function getBrandList() {
   const url = rootURL + '/api/product/brand/all';
-  return fetch(url)
+  return fetch(url, {
+    headers: {
+      'Authorization': 'Bearer ' + token
+    },
+  })
     .then(data => data.json())
 }
 
@@ -38,11 +56,25 @@ export function getSizeListByBrandId(brandId) {
     .then(data => data.json())
 }
 
-// Profile Page
-export function getUserPreferenceList(userId) {
-  const url = rootURL + '/api/preference/' + userId;
-  return fetch(url)
+export function getRecommendedSize(productId) {
+  const url = rootURL + '/api/product/' + productId + '/recommendation';
+  return fetch(url, {
+    headers: {
+      'Authorization': 'Bearer ' + token
+    },
+  })
     .then(data => data.json())
 }
 
-//
+// Profile Page
+export function getUserPreferenceList() {
+  const url = rootURL + '/api/preference/all';
+  return fetch(url, {
+    headers: {
+      'Authorization': 'Bearer ' + token
+    },
+  })
+    .then(data => data.json())
+}
+
+// 

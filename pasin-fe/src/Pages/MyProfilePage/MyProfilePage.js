@@ -7,7 +7,7 @@ import TambahPreferensiPopupForm from "../../Components/TambahPreferensiPopupFor
 import MyPreferenceList from "./MyPreferenceList";
 import React, { useEffect, useState } from "react";
 
-import { getUser } from "../../API/api";
+import { getUser, getUserPreferenceList } from "../../API/api";
 
 function MyProfilePage() {
 
@@ -17,15 +17,13 @@ function MyProfilePage() {
   const [userProfile, setUserProfile] = useState({});
   useEffect(() => {
     let mounted = true;
-    getUser()
-      .then(results => {
-        if (mounted) {
-          setUserProfile(results.data[0])
-        }
-      })
+    getUser().then(results => {
+      if (mounted) {
+        setUserProfile(results.data[0])
+      }
+    })
     return () => mounted = false;
   }, [])
-
 
   return (
     <Container fluid={true} style={{ paddingTop: "70px" }}>

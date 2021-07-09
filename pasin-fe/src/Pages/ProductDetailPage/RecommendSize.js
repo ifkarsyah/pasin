@@ -1,17 +1,44 @@
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import  React, { useState} from "react";
+import React, { useEffect, useState } from "react";
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
+import { getRecommendedSize, getUserPreferenceList } from '../../API/api';
 
-function RecommendSize() {
+
+function RecommendSize(props) {
 
   // modal handling
   const [showModal, setShowModal] = useState(false);
   const handleModalClose = () => setShowModal(false);
   const handleModalShow = () => setShowModal(true);
 
-  // other option handling
+  // cek udah punya atau belum
+  const [userPreference, setUserPreference] = useState([]);
+  useEffect(() => {
+    let mounted = true;
+    getUserPreferenceList(props["productId"])
+      .then(results => {
+        if (mounted) {
+          setRecommendedSize(results.data)
+        }
+      })
+    return () => mounted = false;
+  }, [])
+
+  // recommend
+  const [recommendedSize, setRecommendedSize] = useState();
+
+  useEffect(() => {
+    let mounted = true;
+    getRecommendedSize(props["productId"])
+      .then(results => {
+        if (mounted) {
+          setRecommendedSize(results.data)
+        }
+      })
+    return () => mounted = false;
+  }, [])
 
   return (
     <React.Fragment>
@@ -20,7 +47,6 @@ function RecommendSize() {
       </Button>
 
       <Modal show={showModal} onHide={handleModalClose}>
-
         <Modal.Header closeButton>
           <Modal.Title>
             Kami Merekomendasikan Kamu untuk Memilih Nomor ....

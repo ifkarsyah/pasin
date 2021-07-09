@@ -16,6 +16,7 @@ import ProductDetailPage from "./Pages/ProductDetailPage/ProductDetailPage";
 import MyProfilePage from "./Pages/MyProfilePage/MyProfilePage";
 
 import { getUser } from "./API/api";
+import LoginPage from "./Pages/LoginPage/LoginPage";
 
 function App() {
 
@@ -80,6 +81,7 @@ function App() {
             <Route exact path='/' component={Homepage} />
             <Route path="/products/:productId" component={ProductDetailPage} />
             <Route path="/profile" component={MyProfilePage} />
+            <Route path="/login" component={LoginPage} />
           </Switch>
         </div>
       </Container>

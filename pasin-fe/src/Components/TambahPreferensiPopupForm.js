@@ -68,6 +68,8 @@ function TambahPreferensiPopupForm() {
               <Form.Label>Brand</Form.Label>
               <Form.Control as="select" onChange={e => setUsBrand(e.target.value)}>
                 <option selected disabled>Pilih Brand</option>
+                {console.log("aaaaaaaa")}
+                {console.log(brandList)}
                 {brandList.map(brand =>
                   <option key={brand["brand_id"]} >{brand["name"]}</option>
                 )}
@@ -98,37 +100,15 @@ function TambahPreferensiPopupForm() {
               <Form.Control type="number" />
             </Form.Group>
 
-            {/* Kalo brand baru */}
-            {/* <h3>Tambah Brand Baru</h3>
-            <Form.Group controlId="Nama Brand Baru">
-              <Form.Label>Nama Brand Baru</Form.Label>
-              <Form.Control type="text" />
-            </Form.Group>
-
-            <Form.Row>
-              <Col>
-                <Form.Group controlId="Size">
-                  <Form.Label>Size</Form.Label>
-                  <Form.Control type="number" />
-                </Form.Group>
-              </Col>
-              <Col>
-                <Form.Group controlId="Panjang">
-                  <Form.Label>Panjang</Form.Label>
-                  <Form.Control type="number" />
-                </Form.Group>
-              </Col>
-            </Form.Row> */}
-
           </Form>
 
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleModalClose}>
-            Close
+            Tutup
           </Button>
           <Button variant="primary" onClick={handleModalClose}>
-            Save Changes
+            Simpan
           </Button>
         </Modal.Footer>
       </Modal>
