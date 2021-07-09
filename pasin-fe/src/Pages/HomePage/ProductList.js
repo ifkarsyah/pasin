@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 
-import ProductCard from "./ProductCard"
+import ProductCard from "./ProductCard";
 
 let productListResults = [
   {

@@ -1,8 +1,12 @@
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import React, { useState } from 'react';
 
 function ChooseSizeForm() {
+
   return (
     <Card>
       <Card.Body>
@@ -19,13 +23,22 @@ function ChooseSizeForm() {
             </Form.Control>
           </Form.Group>
 
-          <p>Bingung ukuran yang pas untuk kamu? Klik
-            <strong> di sini</strong> agar kami bisa milihin buat mu.
+          <p>Bingung ukuran yang pas untuk kamu? Kamu bisa
+            <strong> pasin ukuran</strong> agar kami bisa milihin buat mu.
           </p>
 
-          <Button variant="success" size="lg" block="block" type="submit">
-            Beli
-          </Button>
+          <Row>
+            <Col>
+              <Button variant="success" size="lg" type="submit">
+                Beli
+              </Button>
+            </Col>
+            <Col>
+              <Button variant="success" size="lg" type="submit">
+                Beli
+              </Button>
+            </Col>
+          </Row>
         </Form>
       </Card.Body>
     </Card>
