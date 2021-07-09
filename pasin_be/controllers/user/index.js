@@ -7,15 +7,25 @@ const bcrypt = require('bcrypt');
 const authorize = require("../../middlewares/authorization");
 
 router.get('/', authorize, async function(req, res){
-    const user_id = req.user.id
-    const result = await client.query(userQuery,[user_id]);
-    res.json(
-        {   
-            status: 200,
-            message: "success",
-            data: [result.rows[0]]
-        }
-    )
+    const user_id = req.user.id;
+    try{
+        const result = await client.query(userQuery,[user_id]);
+        res.json(
+            {   
+                status: 200,
+                message: "success",
+                data: [result.rows[0]]
+            }
+        )
+    }catch(error){
+        res.status(500).json(
+            {
+                status: 500,
+                message: error.message,
+                data: []
+            }
+        );
+    }
 })
 
 router.post('/login', async (req, res) => {
@@ -115,11 +125,11 @@ router.post('/register', async (req, res) => {
                 data: userDb
             }
         );
-    } catch (err) {
+    } catch (error) {
         res.status(500).json(
             {
                 status: 500,
-                message: err.message,
+                message: error.message,
                 data: []
             }
         );
