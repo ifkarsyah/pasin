@@ -1,0 +1,5 @@
+# Installation must be from the container
+node_modules
+
+# Example env for reference
+.env.example
