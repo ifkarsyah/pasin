@@ -1,7 +1,7 @@
 CREATE TABLE accounts (
 	user_id serial PRIMARY KEY,
 	username VARCHAR(50) UNIQUE NOT NULL,
-	password VARCHAR(50) NOT NULL,
+	password VARCHAR(255) NOT NULL,
 	born_date DATE NOT NULL,
 	gender VARCHAR(1) NOT NULL
 );
@@ -22,7 +22,7 @@ CREATE TABLE rel_brand_size (
 	bs_id serial PRIMARY KEY,
 	brand_id INT,
     size INT,
-    length INT,
+    length INT
 );
 
 

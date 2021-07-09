@@ -4,7 +4,7 @@ let app = express()
 require('dotenv').config()
 
 let client = require('./database/db')
-
+app.use(express.json())
 app.use(require('./controllers'))
 
 app.listen(8000, () => {
