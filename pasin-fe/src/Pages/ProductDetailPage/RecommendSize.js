@@ -41,7 +41,7 @@ function RecommendSize(props) {
   }, [])
 
   return (
-    <>
+    <React.Fragment>
       <Button variant="success" onClick={handleModalShow}>
         <strong>pasin ukuran</strong>
       </Button>
@@ -72,7 +72,7 @@ function RecommendSize(props) {
 
       </Modal>
 
-    </>
+    </React.Fragment>
   );
 }
 

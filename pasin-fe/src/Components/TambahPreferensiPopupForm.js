@@ -1,18 +1,43 @@
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import { react, useState, useEffect } from "react";
+import  React, { useState, useEffect } from "react";
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 
 // API
-import { getBrandList, getSizeListByBrandId } from "../API/api";
+import { getBrandList, getSizeListByBrandId, addPreference } from "../API/api";
 
-function TambahPreferensiPopupForm() {
+function TambahPreferensiPopupForm(props) {
 
   // modal handling
   const [showModal, setShowModal] = useState(false);
   const handleModalClose = () => setShowModal(false);
   const handleModalShow = () => setShowModal(true);
+
+  // handleSubmit
+  const handleSubmit = (e) => {
+    // setShowModal(false)
+    // console.log(e.target.value);
+    // console.log(usBrand);
+    // console.log(usSize);
+    // console.log(usLooseySize);
+    // console.log(sizeList);
+    const params = {
+      "brand_id": usBrandId, // todo
+      "size": usSize,
+      "loosey_size": usLooseySize,
+    }
+    console.log("paraaams")
+    console.log(params);
+    addPreference(params)
+      .then(results => {
+        if (results.status == 200) {
+          setShowModal(false)
+        } else {
+          setShowModal(false)
+        }
+      })
+  };
 
   // brand dropdown handling
   const [brandList, setBrandList] = useState([]);
@@ -29,26 +54,30 @@ function TambahPreferensiPopupForm() {
 
   // size dropdown handling
   const [sizeList, setSizeList] = useState([]);
-  useEffect(() => {
-    let mounted = true;
-    getSizeListByBrandId(usBrand)
+  const getSizeList = (brandId) => {
+    getSizeListByBrandId(brandId)
       .then(results => {
-        if (mounted) {
-          { console.log(results) }
-          setBrandList(results.data)
-        }
+        setUsBrandId(brandId)
+        setSizeList(results.data)
       })
-    return () => mounted = false;
-  }, [])
+  }
+
+  const handleChange = (e) => {
+    setUsBrand(e.target.value);
+    getSizeList(e.target.options.selectedIndex);
+  }
 
   // other option handling
 
   // user selection(us) input handling
   const [usBrand, setUsBrand] = useState('');
+  const [usBrandId, setUsBrandId] = useState(0);
   const [usSize, setUsSize] = useState(0);
+  const [usLooseySize, setUsLooseySize] = useState();
+
 
   return (
-    <>
+    <React.Fragment>
       <Button variant="primary" onClick={handleModalShow}>
         + Preferensi Size
       </Button>
@@ -62,14 +91,12 @@ function TambahPreferensiPopupForm() {
         </Modal.Header>
 
         <Modal.Body>
-          <Form>
+          <Form onSubmit={handleSubmit}>
 
             <Form.Group controlId="Brand">
               <Form.Label>Brand</Form.Label>
-              <Form.Control as="select" onChange={e => setUsBrand(e.target.value)}>
+              <Form.Control as="select" onChange={e => handleChange(e)}>
                 <option selected disabled>Pilih Brand</option>
-                {console.log("aaaaaaaa")}
-                {console.log(brandList)}
                 {brandList.map(brand =>
                   <option key={brand["brand_id"]} >{brand["name"]}</option>
                 )}
@@ -79,25 +106,17 @@ function TambahPreferensiPopupForm() {
 
             <Form.Group controlId="Size">
               <Form.Label>Size</Form.Label>
-              <Form.Control as="select">
+              <Form.Control as="select" onChange={e => setUsSize(e.target.value)}>
                 <option selected disabled>Pilih size</option>
-                <option>35</option>
-                <option>36</option>
-                <option>37</option>
-                <option>38</option>
-                <option>39</option>
-                <option>40</option>
-                <option>41</option>
-                <option>42</option>
-                <option>43</option>
-                <option>44</option>
-                <option>45</option>
+                {sizeList.map(ele =>
+                  <option key={ele["bs_id"]}>{ele["size"]}</option>
+                )}
               </Form.Control>
             </Form.Group>
 
             <Form.Group controlId="LooseySize">
               <Form.Label>Loosey Size (cm)</Form.Label>
-              <Form.Control type="number" />
+              <Form.Control type="number" onChange={e => setUsLooseySize(e.target.value)} />
             </Form.Group>
 
           </Form>
@@ -107,13 +126,13 @@ function TambahPreferensiPopupForm() {
           <Button variant="secondary" onClick={handleModalClose}>
             Tutup
           </Button>
-          <Button variant="primary" onClick={handleModalClose}>
+          <Button variant="primary" onClick={handleSubmit}>
             Simpan
           </Button>
         </Modal.Footer>
       </Modal>
 
-    </>
+    </React.Fragment>
   );
 }
 
