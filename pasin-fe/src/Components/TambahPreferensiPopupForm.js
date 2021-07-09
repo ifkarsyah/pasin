@@ -68,6 +68,8 @@ function TambahPreferensiPopupForm() {
               <Form.Label>Brand</Form.Label>
               <Form.Control as="select" onChange={e => setUsBrand(e.target.value)}>
                 <option selected disabled>Pilih Brand</option>
+                {console.log("aaaaaaaa")}
+                {console.log(brandList)}
                 {brandList.map(brand =>
                   <option key={brand["brand_id"]} >{brand["name"]}</option>
                 )}

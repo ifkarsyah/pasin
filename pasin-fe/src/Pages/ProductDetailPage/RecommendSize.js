@@ -1,10 +1,12 @@
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import { react, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
+import { getRecommendedSize } from '../../API/api';
 
-function RecommendSize() {
+
+function RecommendSize(props) {
 
   // modal handling
   const [showModal, setShowModal] = useState(false);
@@ -12,6 +14,20 @@ function RecommendSize() {
   const handleModalShow = () => setShowModal(true);
 
   // other option handling
+
+  // recommend
+  const [recommendedSize, setRecommendedSize] = useState();
+
+  useEffect(() => {
+    let mounted = true;
+    getRecommendedSize(props["productId"])
+      .then(results => {
+        if (mounted) {
+          setRecommendedSize(results.data)
+        }
+      })
+    return () => mounted = false;
+  }, [])
 
   return (
     <>
