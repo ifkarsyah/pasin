@@ -1,6 +1,6 @@
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import { react, useState } from "react";
+import  React, { useState} from "react";
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 
@@ -14,7 +14,7 @@ function RecommendSize() {
   // other option handling
 
   return (
-    <>
+    <React.Fragment>
       <Button variant="success" onClick={handleModalShow}>
         <strong>pasin ukuran</strong>
       </Button>
@@ -46,7 +46,7 @@ function RecommendSize() {
 
       </Modal>
 
-    </>
+    </React.Fragment>
   );
 }
 

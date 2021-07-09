@@ -1,5 +1,6 @@
 import Card from 'react-bootstrap/Card'
 import Row from 'react-bootstrap/Row';
+import React from "react";
 
 function MyPreferenceCard(props) {
   return (

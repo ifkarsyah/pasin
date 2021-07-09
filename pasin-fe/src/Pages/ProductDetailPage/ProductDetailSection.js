@@ -2,6 +2,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import StarRating from "../../Components/StarRating"
 import Image from "react-bootstrap/Image";
+import  React  from "react";
 
 let productResult = {
   "id": 1,
@@ -38,7 +39,7 @@ Harap DM atau hubungi Customer Service kami apabila ada kendala dalam pemesanan 
 }
 
 function ProductDetailSection(props) {
-  return <>
+  return <React.Fragment>
     <Col xs={3}>
       <Image src={productResult["photo_url"]} rounded fluid style={{ width: "154px" }} />
     </Col>
@@ -47,7 +48,7 @@ function ProductDetailSection(props) {
       <StarRating rating={4.8} />
       <p>{productResult["description"]}</p>
     </Col>
-  </>;
+  </React.Fragment>;
 }
 
 export default ProductDetailSection;

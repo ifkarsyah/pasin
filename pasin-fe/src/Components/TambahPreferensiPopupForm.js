@@ -1,6 +1,6 @@
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import { react, useState, useEffect } from "react";
+import  React, { useState, useEffect } from "react";
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 
@@ -48,7 +48,7 @@ function TambahPreferensiPopupForm() {
   const [usSize, setUsSize] = useState(0);
 
   return (
-    <>
+    <React.Fragment>
       <Button variant="primary" onClick={handleModalShow}>
         + Preferensi Size
       </Button>
@@ -133,7 +133,7 @@ function TambahPreferensiPopupForm() {
         </Modal.Footer>
       </Modal>
 
-    </>
+    </React.Fragment>
   );
 }
 

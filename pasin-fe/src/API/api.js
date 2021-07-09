@@ -1,6 +1,6 @@
 const rootURL = 'http://localhost:8000';
 
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxfSwiaWF0IjoxNjI1ODQzMDUwLCJleHAiOjE2MjU4NTAyNTB9.cG9cLrEHYlJJpryW_tNRlaARvdL64GxoOT4m7P8a9BI'
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxfSwiaWF0IjoxNjI1ODUwNTAyLCJleHAiOjE2MjU4NTc3MDJ9.grAPtmHP5iNXmYqJQL9KohcUH0kIcL5AIQr7Td3-2IQ'
 // all
 export function getUser(userId) {
   const url = rootURL + '/api/user';
