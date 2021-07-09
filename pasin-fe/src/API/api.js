@@ -1,17 +1,29 @@
 const rootURL = 'http://localhost:8000';
 
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxfSwiaWF0IjoxNjI1ODQ4NjAwLCJleHAiOjE2MjU4NTU4MDB9.OpWrYd2xilHVqBq33lB_elBKBucLOmB8R5ZgzKWlaLM'
+const token = localStorage.getItem("token");
 
 // authentication
 export function authLogin(username, password) {
   const url = rootURL + '/api/user/login';
-  return fetch(url)
+  const body = { username, password }
+  return fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json"
+    },
+    body: JSON.stringify(body)
+  })
     .then(data => data.json())
 }
 
 export function authLogout() {
   const url = rootURL + '/api/user/logout';
-  return fetch(url)
+  return fetch(url, {
+    method: "POST",
+    headers: {
+      'Authorization': 'Bearer ' + token
+    }
+  })
     .then(data => data.json())
 }
 
