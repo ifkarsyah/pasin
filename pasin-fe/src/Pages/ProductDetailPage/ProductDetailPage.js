@@ -84,7 +84,7 @@ function ProductDetailPage() {
           <ChooseSizeForm sizeList={"aa" + productOne["detail"]} />
 
           <Container fluid={true} className="d-flex justify-content-between">
-            <RecommendSize />
+
             <TambahPreferensiPopupForm />
           </Container>
         </Col>

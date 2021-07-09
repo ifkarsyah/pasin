@@ -15,21 +15,28 @@ function RecommendSize() {
 
   return (
     <>
-      <Button variant="primary" onClick={handleModalShow}>
-        Recommend Size
+      <Button variant="success" onClick={handleModalShow}>
+        <strong>pasin ukuran</strong>
       </Button>
 
       <Modal show={showModal} onHide={handleModalClose}>
 
         <Modal.Header closeButton>
           <Modal.Title>
-            Tambah Preferensi Ukuran
+            Kami Merekomendasikan Kamu untuk Memilih Nomor ....
           </Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
-          Berdasarkan kan ...
-
+          <Button variant="success" size="lg">
+            <strong>41</strong>
+          </Button>
+          <p>
+            Berdasarkan kan data preferensi yang sudah kamu ambil,
+            kamu memiliki ukuran panjang kaki 28.5 cm.
+            Oleh karena itu, kami sarankan buatmu untuk milih
+            size <strong>41</strong> yang panjangnya 29 cm.
+          </p>
         </Modal.Body>
 
         <Modal.Footer>
