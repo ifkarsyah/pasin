@@ -47,7 +47,7 @@ function ChooseSizeForm(props) {
             <Form.Label>Size</Form.Label>
             <Form.Control
               as="select"
-              defaultValue={recommendedSize}
+              value={recommendedSize}
             >
               {!recommendedSize && <option selected disabled>Pilih size</option>}
               {props.sizeList.map(ele =>
