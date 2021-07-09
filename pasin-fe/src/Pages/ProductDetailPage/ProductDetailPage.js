@@ -3,8 +3,7 @@ import { useParams } from "react-router";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Card from "react-bootstrap/Card";
-import StarRating from "../../Components/StarRating"
+import StarRating from "../../Components/StarRating";
 import Image from "react-bootstrap/Image";
 import ChooseSizeForm from "./ChooseSizeForm";
 import TambahPreferensiPopupForm from "../../Components/TambahPreferensiPopupForm";
