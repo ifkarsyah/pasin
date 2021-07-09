@@ -22,7 +22,7 @@ CREATE TABLE rel_brand_size (
 	bs_id serial PRIMARY KEY,
 	brand_id INT,
     size INT,
-    length INT,
+    length INT
 );
 
 

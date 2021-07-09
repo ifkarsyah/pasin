@@ -1,6 +1,8 @@
 let express = require('express')
 let router = express.Router()
 
+router.use('/login', require('./login'))
+
 router.get('/products', function(req, res){
     res.json(
         {
