@@ -2,15 +2,7 @@ let express = require('express')
 let router = express.Router()
 
 router.use('/login', require('./login'))
-
-router.get('/products', function(req, res){
-    res.json(
-        {
-            status: "success", 
-            data: ["reserved"]
-        }
-    )
-})
+router.use('/products', require('./products'))
 
 router.get('/product/:id', function(req, res){
     res.json(
@@ -41,23 +33,9 @@ router.get('/brand/:id', function(req, res){
     )
 })
 
-router.post('addPreference', function(req, res){
-    res.json(
-        {
-            status: "success",
-            new_rel_bs_id: 1
-        }
-    )
-})
+router.use('/addPreference', require('./preference'))
 
-router.post('addCustomPreference', function(req, res){
-    res.json(
-        {
-            status: "success",
-            new_rel_bs_id: 1
-        }
-    )
-})
+router.use('/addCustomPreference', require('./customPreference'))
 
 router.get('recommendation/:productId', function(req, res){
     res.json(
@@ -69,13 +47,6 @@ router.get('recommendation/:productId', function(req, res){
     )
 })
 
-router.get('user', function(req, res){
-    res.json(
-        {
-            status: "success",
-            data: ["reserved"]
-        }
-    )
-})
+router.use('/user', require('./user'))
 
 module.exports = router
