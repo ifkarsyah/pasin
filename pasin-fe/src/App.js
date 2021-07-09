@@ -2,11 +2,12 @@ import React from 'react';
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
+import Dropdown from "react-bootstrap/Dropdown";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import CreateStudent from "./Components/createStudent";
+import CreateStudent from "./Pages/ProductDetailPage/ChooseSizeForm";
 import StudentList from "./Components/studentList";
 
 import Homepage from "./Pages/HomePage/Homepage";
@@ -27,11 +28,18 @@ function App() {
           </Navbar.Brand>
 
           <Nav className="justify-content-end">
-            <Nav>
-              <Link to={"/profile"} className="nav-link">
-                My Profile
-              </Link>
-            </Nav>
+
+
+            <Dropdown>
+              <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                username
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item href="/profile">My Profile</Dropdown.Item>
+                <Dropdown.Item href="/logout">Logout</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
 
           </Nav>
 
@@ -43,7 +51,7 @@ function App() {
           <Switch>
             <Route exact path='/' component={Homepage} />
             <Route path="/create-student" component={CreateStudent} />
-            <Route path="/products/:product_id" component={ProductDetail} />
+            <Route path="/products/:productId" component={ProductDetail} />
             <Route path="/student-list" component={StudentList} />
           </Switch>
         </div>
