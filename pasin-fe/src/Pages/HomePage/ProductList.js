@@ -13,9 +13,9 @@ function ProductList() {
   useEffect(() => {
     let mounted = true;
     getProductList()
-      .then(items => {
+      .then(results => {
         if (mounted) {
-          setProductList(items)
+          setProductList(results)
         }
       })
     return () => mounted = false;
