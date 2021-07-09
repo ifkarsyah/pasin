@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import React, { useState } from 'react';
 
-function ChooseSizeForm() {
+function ChooseSizeForm(props) {
 
   return (
     <Card>
@@ -15,11 +15,9 @@ function ChooseSizeForm() {
             <Form.Label>Size</Form.Label>
             <Form.Control as="select">
               <option selected disabled>Pilih size</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
+              {/* {props["size_list"].map(ele =>
+                <option key={ele["bs_id"]}>{ele["size"]}</option>
+              )} */}
             </Form.Control>
           </Form.Group>
 

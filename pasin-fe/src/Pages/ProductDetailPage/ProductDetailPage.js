@@ -9,7 +9,7 @@ import ChooseSizeForm from "./ChooseSizeForm";
 import TambahPreferensiPopupForm from "../../Components/TambahPreferensiPopupForm";
 import RecommendSize from "./RecommendSize";
 
-import { getProductOne } from "../../API/api";
+import { getProductOne, getSizeListByBrandId } from "../../API/api";
 
 
 // let productResult = {
@@ -48,14 +48,14 @@ import { getProductOne } from "../../API/api";
 
 function ProductDetailPage() {
   const { productId } = useParams();
-  const [productOne, setProductOne] = useState({});
 
+  // set productOne
+  const [productOne, setProductOne] = useState({});
   useEffect(() => {
     let mounted = true;
     getProductOne(productId)
       .then(result => {
         if (mounted) {
-          console.log(result);
           setProductOne(result);
         }
       })
@@ -76,11 +76,12 @@ function ProductDetailPage() {
           <StarRating rating={4.8} />
           <h3>Rp. {productOne["price"]}</h3>
           <p>{productOne["detail"]}</p>
+          {/* <p>{productOne["size_list"][0]["name"]}</p> */}
         </Col>
 
         {/* Kanan -> Form */}
         <Col xs={4}>
-          <ChooseSizeForm />
+          <ChooseSizeForm sizeList={"aa" + productOne["detail"]} />
 
           <Container fluid={true} className="d-flex justify-content-between">
             <RecommendSize />
