@@ -7,7 +7,7 @@ import Card from "react-bootstrap/Card";
 import StarRating from "../../Components/StarRating"
 import Image from "react-bootstrap/Image";
 import ChooseSizeForm from "./ChooseSizeForm";
-import TambahPreferensiPopupForm from "./TambahPreferensiPopupForm"
+import TambahPreferensiPopupForm from "../../Components/TambahPreferensiPopupForm";
 
 let productResult = {
   "id": 1,

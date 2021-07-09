@@ -16,7 +16,7 @@ function TambahPreferensiPopupForm() {
   return (
     <>
       <Button variant="primary" onClick={handleModalShow}>
-        Pasin Ukuran
+        Tambah Preferensi Size
       </Button>
 
       <Modal show={showModal} onHide={handleModalClose}>
@@ -59,7 +59,7 @@ function TambahPreferensiPopupForm() {
             </Form.Group>
 
             {/* Kalo brand baru */}
-            <h3>Tambah Brand Baru</h3>
+            {/* <h3>Tambah Brand Baru</h3>
             <Form.Group controlId="Nama Brand Baru">
               <Form.Label>Nama Brand Baru</Form.Label>
               <Form.Control type="text" />
@@ -78,7 +78,7 @@ function TambahPreferensiPopupForm() {
                   <Form.Control type="number" />
                 </Form.Group>
               </Col>
-            </Form.Row>
+            </Form.Row> */}
 
           </Form>
 

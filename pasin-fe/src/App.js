@@ -15,6 +15,7 @@ import StudentList from "./Components/studentList";
 
 import Homepage from "./Pages/HomePage/Homepage";
 import ProductDetailPage from "./Pages/ProductDetailPage/ProductDetailPage";
+import MyProfilePage from "./Pages/MyProfilePage/MyProfilePage";
 
 function App() {
   return (
@@ -54,9 +55,8 @@ function App() {
         <div className="wrapper">
           <Switch>
             <Route exact path='/' component={Homepage} />
-            <Route path="/create-student" component={CreateStudent} />
             <Route path="/products/:productId" component={ProductDetailPage} />
-            <Route path="/student-list" component={StudentList} />
+            <Route path="/profile" component={MyProfilePage} />
           </Switch>
         </div>
       </Container>
