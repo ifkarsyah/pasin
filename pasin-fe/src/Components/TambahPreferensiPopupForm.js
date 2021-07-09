@@ -16,7 +16,7 @@ function TambahPreferensiPopupForm() {
   return (
     <>
       <Button variant="primary" onClick={handleModalShow}>
-        Tambah Preferensi Size
+        + Preferensi Size
       </Button>
 
       <Modal show={showModal} onHide={handleModalClose}>

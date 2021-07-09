@@ -15,7 +15,7 @@ function ProductList() {
     getProductList()
       .then(results => {
         if (mounted) {
-          setProductList(results)
+          setProductList(results.data)
         }
       })
     return () => mounted = false;
@@ -24,7 +24,7 @@ function ProductList() {
   return (
     <Container fluid={true} className="d-flex flex-wrap font-weight-bold">
       {productList.map(product =>
-        <ProductCard key={product['id']} product={product}
+        <ProductCard key={product['product_id']} product={product}
         />)}
     </Container>
   );
