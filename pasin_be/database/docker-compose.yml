@@ -1,0 +1,15 @@
+version: '3.1'
+services:
+  db:
+    ports: 
+      - 5432:5432
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=pasin_be
+      - POSTGRES_PASSWORD=pasin_be1337
+      - POSTGRES_DB=pasin_be
+    volumes:
+      - database-data:/var/lib/postgresql/data/
+volumes: 
+  database-data:
