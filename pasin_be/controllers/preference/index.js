@@ -11,7 +11,7 @@ router.post('/addPreference', async function(req, res){
         const result = await client.query(addPreferenceQuery,[user_id,brand_id,size,loosey_size]);
         res.json(
             {
-                status: 201,
+                status: 200,
                 message: "created",
                 data: result.rows[0]
             }
@@ -73,7 +73,7 @@ router.get('/all', async function(req, res){
         }
 
         const profileUserSize = resultProfileUserSize.rows[0]
-
+        
         if (profileUserSize.brand_id != null){
             const resultBrand = await client.query(brandIdQuery, [profileUserSize.brand_id])
             delete profileUserSize.brand_id
