@@ -7,7 +7,7 @@ import Card from "react-bootstrap/Card";
 import StarRating from "../../Components/StarRating"
 import Image from "react-bootstrap/Image";
 import ChooseSizeForm from "./ChooseSizeForm";
-import PopupModal from "./PopupModal"
+import TambahPreferensiPopupForm from "./TambahPreferensiPopupForm"
 
 let productResult = {
   "id": 1,
@@ -78,7 +78,7 @@ function ProductDetailPage() {
         {/* Kanan -> Form */}
         <Col xs={4}>
           <ChooseSizeForm />
-          <PopupModal />
+          <TambahPreferensiPopupForm />
         </Col>
 
       </Row>
