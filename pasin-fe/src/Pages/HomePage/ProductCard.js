@@ -1,14 +1,15 @@
 import { Link, useHistory } from "react-router-dom";
 import Image from "react-bootstrap/Image";
-import StarRating from "./StarRating"
+import StarRating from "../../Components/StarRating"
 
 function ProductCard(props) {
   return <div className="m-3" style={{ width: "154px" }}>
-    <Link to={"/Product/" + props.product["id"]}>
+    <Link to={"/products/" + props.product["id"]}>
       <Image src={props.product["photo_url"]} rounded fluid style={{ width: "154px" }} />
     </Link>
     <p className="mb-0" style={{ width: "154px" }}>{props.product["name"]}</p>
-    <StarRating rating={props.product["vote_average"]} />
+    <p className="mb-0" style={{ width: "154px" }}>{props.product["price"]}</p>
+    <StarRating rating={4.8} />
   </div>;
 }
 
