@@ -1,6 +1,6 @@
 const rootURL = 'http://localhost:8000';
 
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxfSwiaWF0IjoxNjI1ODQ2NzIzLCJleHAiOjE2MjU4NTM5MjN9.6FMJauc4yNhfC1KvGyXndz_utFx861LhMHKVWUxrbZw'
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxfSwiaWF0IjoxNjI1ODQ4NjAwLCJleHAiOjE2MjU4NTU4MDB9.OpWrYd2xilHVqBq33lB_elBKBucLOmB8R5ZgzKWlaLM'
 
 // authentication
 export function authLogin(username, password) {
@@ -67,9 +67,13 @@ export function getRecommendedSize(productId) {
 }
 
 // Profile Page
-export function getUserPreferenceList(userId) {
-  const url = rootURL + '/api/preference/' + userId;
-  return fetch(url)
+export function getUserPreferenceList() {
+  const url = rootURL + '/api/preference/all';
+  return fetch(url, {
+    headers: {
+      'Authorization': 'Bearer ' + token
+    },
+  })
     .then(data => data.json())
 }
 
