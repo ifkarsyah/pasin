@@ -5,8 +5,6 @@ router.use('/login', require('./login'))
 
 router.use('/product', require('./product'))
 
-router.use('/products', require('./products'))
-
 router.get('/brands', function(req, res){
     res.json(
         {

@@ -1,19 +1,21 @@
 const express = require('express')
 const router = express.Router()
 const client = require('../../database/db')
-const { productDetailQuery } = require('../../database/query')
+const { productsQuery, productDetailQuery } = require('../../database/query')
+
+router.get('/all', async function(req, res){
+    const { limit, offset } = req.query;
+    const result = await client.query(productsQuery,[limit,offset]);
+    res.json(
+        {
+            status: "success", 
+            data: result.rows
+        }
+    )
+})
 
 router.get('/:id', async (req, res) => {
     let id = req.params.id
-
-    // if (data.username === undefined && !data.password === undefined){
-    //     return res.status(401).json(
-    //         {
-    //             status: "Parameters not specified",
-    //             code: 401
-    //         }
-    //     )
-    // }
 
     let result = await client.query(productDetailQuery, [id])
     
