@@ -8,6 +8,7 @@ import { authLogin } from "../../API/api";
 import cookies from "../../Utils/Cookies";
 
 function LoginPage({ setAuth }) {
+<<<<<<< HEAD
   const logInStyle = {
     marginTop: '1rem',
     backgroundColor: '#4f9d4d',
@@ -20,6 +21,8 @@ function LoginPage({ setAuth }) {
     width: '30rem',
   };
 
+=======
+>>>>>>> 12e7f32bdc61368a052057fe49b28c5672ad5ae9
   let history = useHistory();
 
   const [inputs, setInputs] = useState({
@@ -80,7 +83,11 @@ function LoginPage({ setAuth }) {
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" name="password"  value={password} onChange={e => onChange(e)}/>
             </Form.Group>
+<<<<<<< HEAD
             <Button style={logInStyle} type="submit" onClick={handleSubmit}>Login</Button>
+=======
+            <Button variant="primary" type="submit" onClick={handleSubmit}>Login</Button>
+>>>>>>> 12e7f32bdc61368a052057fe49b28c5672ad5ae9
           </Form>
           <div className="m-5">
 

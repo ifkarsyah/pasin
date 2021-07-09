@@ -44,6 +44,7 @@ function App() {
 
   useEffect(() => {
     checkAuthenticated();
+    document.title = 'Pasin'
   }, []);
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
