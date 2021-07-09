@@ -5,28 +5,7 @@ const router = express.Router()
 
 router.use('/product', require('./product'))
 
-router.get('/brands', authorize, function(req, res){
-    res.json(
-        {
-            status: "success",
-            data: ["reserved"]
-        }
-    )
-})
-
-router.get('/brand/:id', authorize, function(req, res){
-    res.json(
-        {
-            status: "success",
-            id: req.params.id,
-            data: ["reserved"]
-        }
-    )
-})
-
-router.use('/addPreference', authorize, require('./preference'))
-
-router.use('/addCustomPreference', authorize, require('./customPreference'))
+router.use('/preference', authorize, require('./preference'))
 
 router.get('recommendation/:productId', authorize, function(req, res){
     res.json(

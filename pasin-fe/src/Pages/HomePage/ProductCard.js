@@ -4,7 +4,7 @@ import StarRating from "../../Components/StarRating"
 
 function ProductCard(props) {
   return <div className="m-3" style={{ width: "154px" }}>
-    <Link to={"/products/" + props.product["id"]}>
+    <Link to={"/products/" + props.product["product_id"]}>
       <Image src={props.product["photo_url"]} rounded fluid style={{ width: "154px" }} />
     </Link>
     <p className="mb-0" style={{ width: "154px" }}>{props.product["name"]}</p>

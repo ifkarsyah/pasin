@@ -1,8 +1,11 @@
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import { react, useState } from "react";
+import { react, useState, useEffect } from "react";
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
+
+// API
+import { getBrandList, getSizeListByBrandId } from "../API/api";
 
 function TambahPreferensiPopupForm() {
 
@@ -11,12 +14,46 @@ function TambahPreferensiPopupForm() {
   const handleModalClose = () => setShowModal(false);
   const handleModalShow = () => setShowModal(true);
 
+  // brand dropdown handling
+  const [brandList, setBrandList] = useState([]);
+  useEffect(() => {
+    let mounted = true;
+    getBrandList()
+      .then(results => {
+        if (mounted) {
+          console.log("aaaaaaa")
+          console.log(results)
+          setBrandList(results.data)
+        }
+      })
+    return () => mounted = false;
+  }, [])
+
+  // size dropdown handling
+  const [sizeList, setSizeList] = useState([]);
+  useEffect(() => {
+    let mounted = true;
+    getSizeListByBrandId(usBrand)
+      .then(results => {
+        if (mounted) {
+          console.log("aaaaaaa")
+          console.log(results)
+          setBrandList(results.data)
+        }
+      })
+    return () => mounted = false;
+  }, [])
+
   // other option handling
+
+  // user selection(us) input handling
+  const [usBrand, setUsBrand] = useState('');
+  const [usSize, setUsSize] = useState(0);
 
   return (
     <>
       <Button variant="primary" onClick={handleModalShow}>
-        Tambah Preferensi Size
+        + Preferensi Size
       </Button>
 
       <Modal show={showModal} onHide={handleModalClose}>
@@ -36,12 +73,11 @@ function TambahPreferensiPopupForm() {
 
             <Form.Group controlId="Brand">
               <Form.Label>Brand</Form.Label>
-              <Form.Control as="select">
+              <Form.Control as="select" onChange={e => setUsBrand(e.target.value)}>
                 <option selected disabled>Pilih Brand</option>
-                <option>Adidas</option>
-                <option>Nike</option>
-                <option>Puma</option>
-                <option>Vans</option>
+                {brandList.map(brand =>
+                  <option key={brand["brand_id"]} >{brand["name"]}</option>
+                )}
                 <option>Other</option>
               </Form.Control>
             </Form.Group>
@@ -50,11 +86,7 @@ function TambahPreferensiPopupForm() {
               <Form.Label>Size</Form.Label>
               <Form.Control as="select">
                 <option selected disabled>Pilih size</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+                { }
               </Form.Control>
             </Form.Group>
 

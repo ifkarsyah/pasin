@@ -3,3 +3,6 @@ node_modules
 
 # Example env for reference
 .env.example
+
+# VsCode Extension
+.vscode
