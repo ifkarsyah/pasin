@@ -1,6 +1,6 @@
 const rootURL = 'http://localhost:8000';
 
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyfSwiaWF0IjoxNjI1ODU2MzYxLCJleHAiOjE2MjU5NDI3NjF9.ME_eEXMGNstaaF5HoZYScyT1OiykhPZBTjd2uWm3gNI'
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjozfSwiaWF0IjoxNjI1ODYxMjQ0LCJleHAiOjE2MjU5NDc2NDR9.nGiYJzxcG6sWyj0cAQDpVSz3s2w7fHB_Svv0MfD_UCM'
 
 // authentication
 export function authLogin(username, password) {
@@ -72,10 +72,26 @@ export function getRecommendedSize(productId) {
 
 export function addPreference(params) {
   const url = rootURL + '/api/preference/addPreference';
+
   return fetch(url, {
     method: 'POST',
     headers: {
-      'Authorization': 'Bearer ' + token
+      'Authorization': 'Bearer ' + token,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(params)
+  })
+    .then(data => data.json())
+}
+
+export function customPreference(params) {
+  const url = rootURL + '/api/preference/addCustomPreference';
+
+  return fetch(url, {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer ' + token,
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(params)
   })

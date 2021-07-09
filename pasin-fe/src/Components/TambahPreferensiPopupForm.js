@@ -1,8 +1,10 @@
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import  React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
+
+import TambahCustomPreferensiPopupForm from "./TambahCustomPreferensiPopupForm";
 
 // API
 import { getBrandList, getSizeListByBrandId, addPreference } from "../API/api";
@@ -63,11 +65,17 @@ function TambahPreferensiPopupForm(props) {
   }
 
   const handleChange = (e) => {
-    setUsBrand(e.target.value);
-    getSizeList(e.target.options.selectedIndex);
+    if (e.target.value == 'Other') {
+      setIsOtherSelected(true);
+    } else {
+      setUsBrand(e.target.value);
+      getSizeList(e.target.options.selectedIndex);
+    }
   }
 
   // other option handling
+  const [isOtherSelected, setIsOtherSelected] = useState();
+
 
   // user selection(us) input handling
   const [usBrand, setUsBrand] = useState('');
@@ -118,6 +126,8 @@ function TambahPreferensiPopupForm(props) {
               <Form.Label>Loosey Size (cm)</Form.Label>
               <Form.Control type="number" onChange={e => setUsLooseySize(e.target.value)} />
             </Form.Group>
+
+            {isOtherSelected && <TambahCustomPreferensiPopupForm />}
 
           </Form>
 

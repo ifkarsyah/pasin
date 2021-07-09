@@ -49,7 +49,7 @@ function ProductDetailPage() {
 
         {/* Kanan -> Form */}
         <Col xs={4}>
-          <ChooseSizeForm sizeList={sizeList} />
+          <ChooseSizeForm sizeList={sizeList} productId={productId} />
 
           <Container fluid={true} className="d-flex justify-content-between">
           </Container>
