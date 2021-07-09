@@ -12,7 +12,7 @@ CREATE TABLE products (
 	price INT NOT NULL,
 	photo_url VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
-    rating int NOT NULL
+    rating float8 NOT NULL
 );
 
 CREATE TABLE brands (
@@ -51,9 +51,6 @@ INSERT INTO brands(name) VALUES
     ('Adidas'),
     ('Asics'),
     ('Vans');
-
-INSERT INTO accounts(user_id, username, password, born_date, gender) values
-	(1, 'developer', '$2b$10$rgMLkVQinAXDWE/PuVJVcOoREos1reQHUTaj/wK89oarhfyQ6BoZ2', '2000-01-01', 'P');
 
 INSERT INTO products(name, price, photo_url, description, rating) VALUES
     ('NIKE JORDAN DELTA 2',1979000,'https://cdn.shopify.com/s/files/1/0259/7021/2909/products/CV8121-003-PHCFH001-2000_1360x.jpg?v=1625586607', 'The Jordan Delta 2 offers a fresh, fearless take on the features you want: durability, comfort and an attitude that’s Jordan to the core.We updated design lines and swapped out some components, but the idea is the same as the first Delta.The 2 still has that clashing combination of supportive and space age-like materials, with lots of different textures and heavy stitching to create a look that’s both adventurous and iconic.',4.5),
