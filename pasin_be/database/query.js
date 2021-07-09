@@ -1,4 +1,6 @@
-let loginQuery = "SELECT * FROM accounts where username=$1"
+let loginQuery = 'SELECT * FROM accounts where "username"=$1';
+
+let productDetailQuery = 'SELECT * FROM products p inner join product_stocks ps on p.product_id = ps.product_id inner join rel_brand_size rbs on ps.rel_bs_id = rbs.bs_id where p.product_id = $1';
 
 let productsQuery = "select * from products LIMIT $1 OFFSET $2"
 
@@ -10,4 +12,4 @@ let addRelBrandSizeQuery = "INSERT into  rel_brand_size(length) VALUES ($1) retu
 
 let addUserShoeSizeQuery =  "INSERT into rel_user_shoe_size(user_id, rel_bs_id, loosey_size) VALUES ($1, $2, $3) returning *"
 
-module.exports = { loginQuery, productsQuery, userQuery, addPreferenceQuery, addRelBrandSizeQuery, addUserShoeSizeQuery }
+module.exports = { loginQuery, productDetailQuery, productsQuery, userQuery, addPreferenceQuery, addRelBrandSizeQuery, addUserShoeSizeQuery }
