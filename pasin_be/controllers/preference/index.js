@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const client = require('../../database/db')
-const { addPreferenceQuery } = require('../../database/query')
+const { addPreferenceQuery, addRelBrandSizeQuery, addUserShoeSizeQuery } = require('../../database/query')
 
 router.post('/addPreference', async function(req, res){
     const { brand_id, size, loosey_size} = req.body;

@@ -28,7 +28,6 @@ function calculateRecommendation(sizeLists, userSize){
 
     let lengthDiff = userSize.loosey_size - minLength
 
-    console.log(minLength)
     if (minLength <= userSize.loosey_size) {
         return {reccomendation: sizeLengthAfterCalculation[minLength], lengthDiff: lengthDiff}
     }else{
