@@ -11,6 +11,7 @@ function ChooseSizeForm(props) {
 
   return (
     <Card>
+
       <Card.Body>
         <Form>
           <Form.Group controlId="Size">
@@ -50,6 +51,7 @@ function ChooseSizeForm(props) {
                 +Keranjang
               </Button>
             </Col>
+
           </Row>
         </Form>
       </Card.Body>
