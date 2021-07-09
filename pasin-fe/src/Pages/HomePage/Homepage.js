@@ -1,20 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import { useHistory } from "react-router-dom";
-import ProductList from "./ProductList"
+import ProductList from "./ProductList";
+
 
 export default function HomePage() {
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState('defaultuser');
   const history = useHistory();
-  useEffect(() => {
-    (async () => {
-      try {
-        setUsername("Madara");
-      } catch (e) {
-        history.push('/login');
-      }
-    })();
-  }, []);
 
   return (
     // paddingTop: 70px => biar 
