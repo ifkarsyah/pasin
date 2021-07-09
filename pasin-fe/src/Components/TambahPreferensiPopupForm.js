@@ -127,10 +127,10 @@ function TambahPreferensiPopupForm() {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleModalClose}>
-            Close
+            Tutup
           </Button>
           <Button variant="primary" onClick={handleModalClose}>
-            Save Changes
+            Simpan
           </Button>
         </Modal.Footer>
       </Modal>

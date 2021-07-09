@@ -42,7 +42,11 @@ export function getProductOne(productId) {
 
 export function getBrandList() {
   const url = rootURL + '/api/product/brand/all';
-  return fetch(url)
+  return fetch(url, {
+    headers: {
+      'Authorization': 'Bearer ' + token
+    },
+  })
     .then(data => data.json())
 }
 
