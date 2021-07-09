@@ -2,22 +2,13 @@ let express = require('express')
 let router = express.Router()
 
 router.use('/login', require('./login'))
+router.use('/product', require('./product'))
 
 router.get('/products', function(req, res){
     res.json(
         {
             status: "success", 
             data: ["reserved"]
-        }
-    )
-})
-
-router.get('/product/:id', function(req, res){
-    res.json(
-        {
-            status: "success",
-            id: req.params.id, 
-            data: "reserved"
         }
     )
 })
