@@ -21,7 +21,7 @@ function ProductDetailPage() {
     getProductOne(productId)
       .then(result => {
         if (mounted) {
-          setProductOne(result);
+          setProductOne(result.data[0]);
         }
       })
     return () => mounted = false;

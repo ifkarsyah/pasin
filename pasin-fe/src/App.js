@@ -11,7 +11,6 @@ import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 
 import CreateStudent from "./Pages/ProductDetailPage/ChooseSizeForm";
-import StudentList from "./Components/studentList";
 
 import Homepage from "./Pages/HomePage/Homepage";
 import ProductDetailPage from "./Pages/ProductDetailPage/ProductDetailPage";
