@@ -34,6 +34,7 @@ function TambahPreferensiPopupForm() {
     getSizeListByBrandId(usBrand)
       .then(results => {
         if (mounted) {
+          { console.log(results) }
           setBrandList(results.data)
         }
       })
@@ -62,15 +63,13 @@ function TambahPreferensiPopupForm() {
 
         <Modal.Body>
           <Form>
-            <Form.Group controlId="Jenis">
-              <Form.Label>Jenis</Form.Label>
-              <Form.Control type="text" />
-            </Form.Group>
 
             <Form.Group controlId="Brand">
               <Form.Label>Brand</Form.Label>
               <Form.Control as="select" onChange={e => setUsBrand(e.target.value)}>
                 <option selected disabled>Pilih Brand</option>
+                {console.log("aaaaaaaa")}
+                {console.log(brandList)}
                 {brandList.map(brand =>
                   <option key={brand["brand_id"]} >{brand["name"]}</option>
                 )}
@@ -82,8 +81,23 @@ function TambahPreferensiPopupForm() {
               <Form.Label>Size</Form.Label>
               <Form.Control as="select">
                 <option selected disabled>Pilih size</option>
-                { }
+                <option>35</option>
+                <option>36</option>
+                <option>37</option>
+                <option>38</option>
+                <option>39</option>
+                <option>40</option>
+                <option>41</option>
+                <option>42</option>
+                <option>43</option>
+                <option>44</option>
+                <option>45</option>
               </Form.Control>
+            </Form.Group>
+
+            <Form.Group controlId="LooseySize">
+              <Form.Label>Loosey Size (cm)</Form.Label>
+              <Form.Control type="number" />
             </Form.Group>
 
             {/* Kalo brand baru */}
