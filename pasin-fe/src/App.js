@@ -7,6 +7,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 
@@ -18,6 +19,16 @@ import { getUser } from "./API/api";
 import LoginPage from "./Pages/LoginPage/LoginPage";
 
 function App() {
+
+  const navBarStyle = {
+    backgroundColor: '#ffffff',
+    boxShadow: "0 2px 2px -2px rgba(0,0,0,.2)"
+  };
+
+  const dropDownstyle = {
+    backgroundColor: '#4f9d4d',
+  };
+
 
   const [username, setUsername] = useState('defaultuser');
   useEffect(() => {
@@ -35,12 +46,12 @@ function App() {
     <Router>
 
       {/* navbar */}
-      <Navbar bg="primary" fixed="top" className="mb-2">
+      <Navbar style={navBarStyle} fixed="top" className="mb-2">
 
-        <Container className="px-5">
+        <Container className="px-2">
 
           <Navbar.Brand href="/">
-            <strong>pasin</strong>
+            <img src="https://i.ibb.co/DrjsQYM/pasin-removebg-preview.png" width="90"></img>
           </Navbar.Brand>
 
           <Nav className="col-xs-5">
@@ -51,7 +62,7 @@ function App() {
 
           <Nav className="ml-auto">
             <Dropdown>
-              <Dropdown.Toggle variant="primary" id="dropdown-basic">
+              <Dropdown.Toggle style={dropDownstyle} id="dropdown-basic">
                 {username}
               </Dropdown.Toggle>
 
