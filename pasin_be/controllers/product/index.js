@@ -47,6 +47,8 @@ router.get('/:id', async (req, res) => {
                 name: product.name,
                 price: product.price,
                 photo: product.photo_url,
+                description: product.description,
+                rating: product.rating,
                 size_list: size_list
             }
         )

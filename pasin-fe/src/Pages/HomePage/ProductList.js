@@ -5,17 +5,15 @@ import ProductCard from "./ProductCard";
 
 import { getProductList } from "../../API/getProductList";
 
-let productListResults = []
-
 function ProductList() {
-  const [productList, setProductList] = useState(productListResults);
+  const [productList, setProductList] = useState([]);
 
   useEffect(() => {
     let mounted = true;
     getProductList()
-      .then(items => {
+      .then(results => {
         if (mounted) {
-          setProductList(items)
+          setProductList(results.data)
         }
       })
     return () => mounted = false;
@@ -24,7 +22,7 @@ function ProductList() {
   return (
     <Container fluid={true} className="d-flex flex-wrap font-weight-bold">
       {productList.map(product =>
-        <ProductCard key={product['id']} product={product}
+        <ProductCard key={product['product_id']} product={product}
         />)}
     </Container>
   );
