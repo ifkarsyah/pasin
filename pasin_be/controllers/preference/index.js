@@ -57,10 +57,22 @@ router.post('/addCustomPreference', async function(req, res){
 
 router.get('/all', async function(req, res){
     const user_id = req.user.id
-
+    
     try{
-        const resultProfileUserSize = client.query(profileUserSizeQuery, [user_id])
-        const profileUserSize = (await resultProfileUserSize).rows[0]
+        const resultProfileUserSize = await client.query(profileUserSizeQuery, [user_id])
+
+        if(resultProfileUserSize.rowCount == 0){
+            return res.status(404).json(
+                {
+                    status: 404,
+                    message: "User has not set the preference",
+                    data: [
+                    ]
+                }
+            )
+        }
+
+        const profileUserSize = resultProfileUserSize.rows[0]
 
         if (profileUserSize.brand_id != null){
             const resultBrand = await client.query(brandIdQuery, [profileUserSize.brand_id])
