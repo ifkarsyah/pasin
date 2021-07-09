@@ -7,29 +7,35 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import Form from "react-bootstrap/Form";
+import FormControl from "react-bootstrap/FormControl";
+
 import CreateStudent from "./Pages/ProductDetailPage/ChooseSizeForm";
 import StudentList from "./Components/studentList";
 
 import Homepage from "./Pages/HomePage/Homepage";
-import ProductDetail from './Pages/ProductDetailPage/ProductDetailPage';
+import ProductDetailPage from "./Pages/ProductDetailPage/ProductDetailPage";
 
 function App() {
   return (
     <Router>
 
       {/* navbar */}
-      <Navbar bg="primary" variant="dark">
-        <Container>
+      <Navbar bg="primary" fixed="top" className="mb-2">
 
-          <Navbar.Brand>
-            <Link to={"/"} className="nav-link text-white">
-              Pasin
-            </Link>
+        <Container className="px-5">
+
+          <Navbar.Brand href="/">
+            <strong>pasin</strong>
           </Navbar.Brand>
 
-          <Nav className="justify-content-end">
+          <Nav className="mr-auto">
+            <Form inline >
+              <FormControl name="search" type="text" placeholder="Search" />
+            </Form>
+          </Nav>
 
-
+          <Nav className="ml-auto">
             <Dropdown>
               <Dropdown.Toggle variant="primary" id="dropdown-basic">
                 username
@@ -40,9 +46,7 @@ function App() {
                 <Dropdown.Item href="/logout">Logout</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
-
           </Nav>
-
         </Container>
       </Navbar>
 
@@ -51,7 +55,7 @@ function App() {
           <Switch>
             <Route exact path='/' component={Homepage} />
             <Route path="/create-student" component={CreateStudent} />
-            <Route path="/products/:productId" component={ProductDetail} />
+            <Route path="/products/:productId" component={ProductDetailPage} />
             <Route path="/student-list" component={StudentList} />
           </Switch>
         </div>

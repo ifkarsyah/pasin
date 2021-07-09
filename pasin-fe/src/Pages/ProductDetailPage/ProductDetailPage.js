@@ -58,7 +58,7 @@ function ProductDetailPage() {
   }
 
   return (
-    <Container fluid={true}>
+    <Container fluid={true} style={{ paddingTop: "70px" }}>
       <Row>
         {/* Kiri -> Gambar*/}
         <Col xs={4}>
