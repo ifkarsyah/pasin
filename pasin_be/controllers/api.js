@@ -1,11 +1,11 @@
-let express = require('express')
-let router = express.Router()
+const express = require('express')
+const authorize = require("../middlewares/authorization");
+const router = express.Router()
 
-router.use('/login', require('./login'))
 
 router.use('/product', require('./product'))
 
-router.get('/brands', function(req, res){
+router.get('/brands', authorize, function(req, res){
     res.json(
         {
             status: "success",
@@ -14,7 +14,7 @@ router.get('/brands', function(req, res){
     )
 })
 
-router.get('/brand/:id', function(req, res){
+router.get('/brand/:id', authorize, function(req, res){
     res.json(
         {
             status: "success",
@@ -24,11 +24,11 @@ router.get('/brand/:id', function(req, res){
     )
 })
 
-router.use('/addPreference', require('./preference'))
+router.use('/addPreference', authorize, require('./preference'))
 
-router.use('/addCustomPreference', require('./customPreference'))
+router.use('/addCustomPreference', authorize, require('./customPreference'))
 
-router.get('recommendation/:productId', function(req, res){
+router.get('recommendation/:productId', authorize, function(req, res){
     res.json(
         {
             status: "success",
