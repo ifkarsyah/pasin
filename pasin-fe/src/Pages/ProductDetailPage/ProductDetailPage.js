@@ -21,7 +21,7 @@ function ProductDetailPage() {
     getProductOne(productId)
       .then(result => {
         if (mounted) {
-          setProductOne(result);
+          setProductOne(result.data[0]);
         }
       })
     return () => mounted = false;
@@ -40,18 +40,18 @@ function ProductDetailPage() {
           <h3 className="font-weight-bolder">{productOne["name"]}</h3>
           <StarRating rating={4.8} />
           <h3>Rp. {productOne["price"]}</h3>
-          <p>{productOne["detail"]}</p>
+          <p>{productOne["description"]}</p>
           {/* <p>{productOne["size_list"][0]["name"]}</p> */}
         </Col>
 
         {/* Kanan -> Form */}
         <Col xs={4}>
           {console.log(productOne)}
-          <ChooseSizeForm sizeList={"aa" + productOne["detail"]} />
+          <ChooseSizeForm sizeList={"aa" + productOne["description"]} />
 
           <Container fluid={true} className="d-flex justify-content-between">
 
-            <TambahPreferensiPopupForm />
+          
           </Container>
         </Col>
 

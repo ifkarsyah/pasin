@@ -3,9 +3,24 @@ import Container from "react-bootstrap/Container";
 import { useHistory } from "react-router-dom";
 import ProductList from "./ProductList";
 
+import { getUser } from "../../API/api";
+
 
 export default function HomePage() {
+
+  // user profile
   const [username, setUsername] = useState('defaultuser');
+  useEffect(() => {
+    let mounted = true;
+    getUser()
+      .then(results => {
+        if (mounted) {
+          setUsername(results.data[0]["username"])
+        }
+      })
+    return () => mounted = false;
+  }, [])
+
   const history = useHistory();
 
   return (

@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col';
 import React, { useState } from 'react';
 
 import RecommendSize from './RecommendSize';
+import TambahPreferensiPopupForm from "../../Components/TambahPreferensiPopupForm";
 
 function ChooseSizeForm(props) {
 
@@ -39,6 +40,9 @@ function ChooseSizeForm(props) {
             <strong> <RecommendSize /></strong> agar kami bisa milihin buat mu.
           </p>
 
+          <div className="mb-5">
+            <TambahPreferensiPopupForm />
+          </div>
 
           <Row>
             <Col>

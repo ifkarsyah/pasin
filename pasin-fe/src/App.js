@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
@@ -10,14 +10,27 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 
-import CreateStudent from "./Pages/ProductDetailPage/ChooseSizeForm";
-import StudentList from "./Components/studentList";
-
 import Homepage from "./Pages/HomePage/Homepage";
 import ProductDetailPage from "./Pages/ProductDetailPage/ProductDetailPage";
 import MyProfilePage from "./Pages/MyProfilePage/MyProfilePage";
 
+import { getUser } from "./API/api";
+import LoginPage from "./Pages/LoginPage/LoginPage";
+
 function App() {
+
+  const [username, setUsername] = useState('defaultuser');
+  useEffect(() => {
+    let mounted = true;
+    getUser()
+      .then(results => {
+        if (mounted) {
+          setUsername(results.data[0]["username"])
+        }
+      })
+    return () => mounted = false;
+  }, [])
+
   return (
     <Router>
 
@@ -39,7 +52,7 @@ function App() {
           <Nav className="ml-auto">
             <Dropdown>
               <Dropdown.Toggle variant="primary" id="dropdown-basic">
-                username
+                {username}
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
@@ -57,6 +70,7 @@ function App() {
             <Route exact path='/' component={Homepage} />
             <Route path="/products/:productId" component={ProductDetailPage} />
             <Route path="/profile" component={MyProfilePage} />
+            <Route path="/login" component={LoginPage} />
           </Switch>
         </div>
       </Container>
