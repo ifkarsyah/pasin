@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import ProductList from "./ProductList"
 
 export default function HomePage() {

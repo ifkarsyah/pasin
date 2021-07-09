@@ -7,10 +7,10 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import CreateStudent from "./Components/createStudent";
-import EditStudent from "./Components/editStudent";
 import StudentList from "./Components/studentList";
 
 import Homepage from "./Pages/HomePage/Homepage";
+import ProductDetail from './Pages/ProductDetailPage/ProductDetailPage';
 
 function App() {
   return (
@@ -28,16 +28,11 @@ function App() {
 
           <Nav className="justify-content-end">
             <Nav>
-              <Link to={"/create-student"} className="nav-link">
-                Create Student
+              <Link to={"/profile"} className="nav-link">
+                My Profile
               </Link>
             </Nav>
 
-            <Nav>
-              <Link to={"/student-list"} className="nav-link">
-                Student List
-              </Link>
-            </Nav>
           </Nav>
 
         </Container>
@@ -48,7 +43,7 @@ function App() {
           <Switch>
             <Route exact path='/' component={Homepage} />
             <Route path="/create-student" component={CreateStudent} />
-            <Route path="/edit-student/:id" component={EditStudent} />
+            <Route path="/products/:product_id" component={ProductDetail} />
             <Route path="/student-list" component={StudentList} />
           </Switch>
         </div>
