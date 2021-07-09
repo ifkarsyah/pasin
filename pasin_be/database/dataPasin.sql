@@ -12,7 +12,7 @@ CREATE TABLE products (
 	price INT NOT NULL,
 	photo_url VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
-    rating int NOT NULL,
+    rating int NOT NULL
 );
 
 CREATE TABLE brands (
