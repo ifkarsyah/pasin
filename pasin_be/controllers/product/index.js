@@ -1,7 +1,17 @@
 const express = require('express')
 const router = express.Router()
 const client = require('../../database/db')
-const { productsQuery, productDetailQuery, brandQuery, brandSize } = require('../../database/query')
+const { getQueryObject, calculateRecommendation } = require('../../helpers/helpers')
+
+const { 
+    productsQuery, 
+    productDetailQuery, 
+    brandQuery, 
+    brandSize, 
+    productCheckQuery,
+    sizeListQuery,
+    userSizeQuery
+} = require('../../database/query')
 
 router.get('/all', async function(req, res){
     const { limit, offset } = req.query;
@@ -27,10 +37,7 @@ router.get('/:id', async (req, res) => {
             }
         )
     }else if (result.rowCount > 0){
-        let size_list = []
-        result.rows.forEach(element => {
-            size_list.push({size: element.size, stock: element.stock})
-        });
+        let size_list = getQueryObject(result)
         
         product = result.rows[0]
 
@@ -63,13 +70,57 @@ router.get('/brand/:id', async function(req, res){
 
     const result = await client.query(brandSize, [id])
 
-    res.json(
+
+    res.status(200).json(
         {
-            status: "success",
-            id: req.params.id,
+            status: 200,
+            message: "success",
             data: result.rows
         }
     )
+})
+
+router.get('/:id/recommendation', async function(req, res){
+    const id = req.params.id
+    
+    const productCheck = await client.query(productCheckQuery, [id])
+
+    if(productCheck.rowCount != 1){
+        res.status(404).json(
+            {
+                status: 404,
+                message: "Product not found",
+                data: []
+            }
+        )
+    }else if(productCheck.rowCount == 1){
+        const result = await client.query(sizeListQuery, [id]).catch(err => console.log(err))
+
+        let sizeLists = getQueryObject(result)
+
+        let userSize = (await client.query(userSizeQuery, [1])).rows[0]
+
+        let recommendation = calculateRecommendation(sizeLists, userSize)
+
+        if (recommendation.reccomendation == 0){
+            res.status(200).json({
+                status: 404,
+                message: "No recommendation found",
+                data: [
+                    recommendation
+                ]
+            })
+        }else{
+            res.status(200).json({
+                status: 200,
+                message: "success",
+                data: [
+                    recommendation
+                ]
+            })
+        }
+    }
+
 })
 
 module.exports = router
