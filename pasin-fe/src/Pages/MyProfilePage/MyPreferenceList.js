@@ -64,8 +64,7 @@ function MyPreferenceList() {
     getUserPreferenceList()
       .then(results => {
         if (mounted) {
-          { console.log("aaaaaaaaa") }
-          { console.log(results) }
+          console.log(results)
           setUserShoeSizePreference(results.data)
         }
       })
@@ -74,9 +73,10 @@ function MyPreferenceList() {
 
   return (
     <Container fluid={true} className="d-flex flex-wrap font-weight-bold">
-      {userShoeSizePreference.map(pref =>
+      {console.log(userShoeSizePreference)}
+      {/* {userShoeSizePreference.map(pref =>
         <MyPreferenceCard key={pref['id']} pref={pref}
-        />)}
+        />)} */}
     </Container>
   );
 }

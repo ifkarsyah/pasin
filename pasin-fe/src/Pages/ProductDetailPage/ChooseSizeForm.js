@@ -3,12 +3,40 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import RecommendSize from './RecommendSize';
 import TambahPreferensiPopupForm from "../../Components/TambahPreferensiPopupForm";
+import { getRecommendedSize, getUserPreferenceList } from '../../API/api';
 
 function ChooseSizeForm(props) {
+
+  // userHasPreference
+  const [userHasPreference, setUserHasPreference] = useState(false);
+
+
+  // recommendationSize
+  const [recommendedSize, setRecommendedSize] = useState();
+  const [diffLength, setDiffLength] = useState(0);
+  useEffect(() => {
+    let mounted = true;
+    getRecommendedSize(props["productId"])
+      .then(results => {
+        if (mounted) {
+          if (results.status == 200) {
+            // console.log()
+            setRecommendedSize(results.data[0]["reccomendation"]);
+            setUserHasPreference(true);
+            setDiffLength(results.data[0]["lengthDiff"])
+          } else {
+            setUserHasPreference(false);
+            setRecommendedSize(null);
+            setDiffLength(null)
+          }
+        }
+      })
+    return () => mounted = false;
+  }, [])
 
   return (
     <Card>
@@ -17,45 +45,37 @@ function ChooseSizeForm(props) {
         <Form>
           <Form.Group controlId="Size">
             <Form.Label>Size</Form.Label>
-            <Form.Control as="select">
-              <option selected disabled>Pilih size</option>
-              {/* {props["size_list"].map(ele =>
+            <Form.Control
+              as="select"
+              value={recommendedSize}
+            >
+              {!recommendedSize && <option selected disabled>Pilih size</option>}
+              {props.sizeList.map(ele =>
                 <option key={ele["bs_id"]}>{ele["size"]}</option>
-              )} */}
-              <option>35</option>
-              <option>36</option>
-              <option>37</option>
-              <option>38</option>
-              <option>39</option>
-              <option>40</option>
-              <option>41</option>
-              <option>42</option>
-              <option>43</option>
-              <option>44</option>
-              <option>45</option>
+              )}
             </Form.Control>
           </Form.Group>
 
-          <p>Bingung ukuran yang pas untuk kamu? Kamu bisa
-            <strong> <RecommendSize /></strong> agar kami bisa milihin buat mu.
-          </p>
+          {/* <p>Bingung ukuran yang pas untuk kamu? Kamu bisa
+            <strong> <RecommendSize productId={props["productId"]} /></strong> agar kami bisa milihin buat mu.
+          </p> */}
 
-          <div className="mb-5">
-            <TambahPreferensiPopupForm />
-          </div>
+
+          {recommendedSize && (
+            <p>Kami merekomendasikan size: {recommendedSize} dengan perbedaan ukuran sebesar {diffLength} cm dari ukuranmu.</p>
+          )}
+
+
+          {!userHasPreference &&
+            <div className="mb-5">
+              <TambahPreferensiPopupForm sizeList={props.sizeList} />
+            </div>
+          }
 
           <Row>
-            <Col>
-              <Button variant="outline-success" size="lg" type="submit">
-                Beli
-              </Button>
-            </Col>
-            <Col>
-              <Button variant="success" size="lg" type="submit">
-                +Keranjang
-              </Button>
-            </Col>
-
+            <Button variant="outline-success" size="lg" type="submit">
+              Beli
+            </Button>
           </Row>
         </Form>
       </Card.Body>

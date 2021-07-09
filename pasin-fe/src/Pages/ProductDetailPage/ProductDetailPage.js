@@ -16,12 +16,15 @@ function ProductDetailPage() {
 
   // set productOne
   const [productOne, setProductOne] = useState({});
+  const [sizeList, setSizeList] = useState([]);
+
   useEffect(() => {
     let mounted = true;
     getProductOne(productId)
       .then(result => {
         if (mounted) {
           setProductOne(result.data[0]);
+          setSizeList(result.data[0]["size_list"]);
         }
       })
     return () => mounted = false;
@@ -46,12 +49,9 @@ function ProductDetailPage() {
 
         {/* Kanan -> Form */}
         <Col xs={4}>
-          {console.log(productOne)}
-          <ChooseSizeForm sizeList={"aa" + productOne["description"]} />
+          <ChooseSizeForm sizeList={sizeList} productId={productId} />
 
           <Container fluid={true} className="d-flex justify-content-between">
-
-          
           </Container>
         </Col>
 

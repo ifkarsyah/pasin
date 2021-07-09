@@ -64,7 +64,11 @@ export function getBrandList() {
 
 export function getSizeListByBrandId(brandId) {
   const url = rootURL + '/api/product/brand/' + brandId;
-  return fetch(url)
+  return fetch(url, {
+    headers: {
+      'Authorization': 'Bearer ' + token
+    },
+  })
     .then(data => data.json())
 }
 
@@ -74,6 +78,34 @@ export function getRecommendedSize(productId) {
     headers: {
       'Authorization': 'Bearer ' + token
     },
+  })
+    .then(data => data.json())
+}
+
+export function addPreference(params) {
+  const url = rootURL + '/api/preference/addPreference';
+
+  return fetch(url, {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer ' + token,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(params)
+  })
+    .then(data => data.json())
+}
+
+export function customPreference(params) {
+  const url = rootURL + '/api/preference/addCustomPreference';
+
+  return fetch(url, {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer ' + token,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(params)
   })
     .then(data => data.json())
 }

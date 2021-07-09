@@ -13,28 +13,14 @@ function RecommendSize(props) {
   const handleModalClose = () => setShowModal(false);
   const handleModalShow = () => setShowModal(true);
 
-  // cek udah punya atau belum
-  const [userPreference, setUserPreference] = useState([]);
-  useEffect(() => {
-    let mounted = true;
-    getUserPreferenceList(props["productId"])
-      .then(results => {
-        if (mounted) {
-          setRecommendedSize(results.data)
-        }
-      })
-    return () => mounted = false;
-  }, [])
-
   // recommend
   const [recommendedSize, setRecommendedSize] = useState();
-
   useEffect(() => {
     let mounted = true;
     getRecommendedSize(props["productId"])
       .then(results => {
         if (mounted) {
-          setRecommendedSize(results.data)
+          setRecommendedSize(results.data[0]["recommendation"])
         }
       })
     return () => mounted = false;
