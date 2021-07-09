@@ -6,7 +6,8 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import StarRating from "../../Components/StarRating"
 import Image from "react-bootstrap/Image";
-import ChooseSizeForm from "./ChooseSizeForm"
+import ChooseSizeForm from "./ChooseSizeForm";
+import TambahPreferensiPopupForm from "./TambahPreferensiPopupForm"
 
 let productResult = {
   "id": 1,
@@ -58,10 +59,11 @@ function ProductDetailPage() {
   }
 
   return (
-    <Container fluid={true}>
+    <Container fluid={true} style={{ paddingTop: "70px" }}>
       <Row>
         {/* Kiri -> Gambar*/}
         <Col xs={4}>
+          <h1>Product id: {productId}</h1>
           <Image src={productResult["photo_url"]} rounded fluid style={{ width: "354px" }} />
         </Col>
 
@@ -76,7 +78,7 @@ function ProductDetailPage() {
         {/* Kanan -> Form */}
         <Col xs={4}>
           <ChooseSizeForm />
-
+          <TambahPreferensiPopupForm />
         </Col>
 
       </Row>
