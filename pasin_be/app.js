@@ -2,6 +2,7 @@ let express = require('express')
 let app = express()
 
 require('dotenv').config()
+app.use(express.json())
 
 let client = require('./database/db')
 app.use(express.json())
