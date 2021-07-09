@@ -26,4 +26,4 @@ let userSizeQuery = 'SELECT rbs.length, russ.loosey_size from rel_brand_size rbs
 
 let profileUserSizeQuery = 'SELECT rbs.brand_id, rbs.size, rbs.length, russ.loosey_size from rel_brand_size rbs inner join rel_user_shoe_size russ on rbs.bs_id = russ.rel_bs_id where russ.user_id = $1'
 
-module.exports = { loginQuery, productDetailQuery, productsQuery, userQuery, addPreferenceQuery, addRelBrandSizeQuery, addUserShoeSizeQuery, brandQuery, brandSize, productCheckQuery, sizeListQuery, userSizeQuery, newUserQuery }
+module.exports = { searchUserQuery, productDetailQuery, productsQuery, userQuery, addPreferenceQuery, addRelBrandSizeQuery, addUserShoeSizeQuery, brandQuery, brandSize, productCheckQuery, sizeListQuery, userSizeQuery, newUserQuery }
