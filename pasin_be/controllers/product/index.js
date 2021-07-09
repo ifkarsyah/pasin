@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const client = require('../../database/db')
-const { productsQuery, productDetailQuery } = require('../../database/query')
+const { productsQuery, productDetailQuery, brandQuery, brandSize } = require('../../database/query')
 
 router.get('/all', async function(req, res){
     const { limit, offset } = req.query;
@@ -15,9 +15,9 @@ router.get('/all', async function(req, res){
 })
 
 router.get('/:id', async (req, res) => {
-    let id = req.params.id
+    const id = req.params.id
 
-    let result = await client.query(productDetailQuery, [id])
+    const result = await client.query(productDetailQuery, [id])
     
     if (result.rowCount == 0){
         res.status(404).json(
@@ -45,6 +45,31 @@ router.get('/:id', async (req, res) => {
         )
     }
     
+})
+
+router.get('/brand/all', async function(req, res){
+    const result = await client.query(brandQuery)
+
+    res.json(
+        {
+            status: "success",
+            data: result.rows
+        }
+    )
+})
+
+router.get('/brand/:id', async function(req, res){
+    const id = req.params.id
+
+    const result = await client.query(brandSize, [id])
+
+    res.json(
+        {
+            status: "success",
+            id: req.params.id,
+            data: result.rows
+        }
+    )
 })
 
 module.exports = router
