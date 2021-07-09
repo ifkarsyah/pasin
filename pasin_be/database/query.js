@@ -24,6 +24,9 @@ let sizeListQuery = 'SELECT size, length FROM rel_brand_size rbs WHERE rbs.bs_id
 
 let userSizeQuery = 'SELECT rbs.length, russ.loosey_size from rel_brand_size rbs inner join rel_user_shoe_size russ on rbs.bs_id = russ.rel_bs_id where russ.user_id = $1'
 
-let profileUserSizeQuery = 'SELECT rbs.brand_id, rbs.size, rbs.length, russ.loosey_size from rel_brand_size rbs inner join rel_user_shoe_size russ on rbs.bs_id = russ.rel_bs_id where russ.user_id = $1'
+let profileUserSizeQuery = 'select rbs.brand_id, rbs.size, rbs.length, russ.loosey_size from rel_brand_size rbs inner join rel_user_shoe_size russ on rbs.bs_id = russ.rel_bs_id where russ.user_id = $1'
 
-module.exports = { searchUserQuery, productDetailQuery, productsQuery, userQuery, addPreferenceQuery, addRelBrandSizeQuery, addUserShoeSizeQuery, brandQuery, brandSize, productCheckQuery, sizeListQuery, userSizeQuery, newUserQuery }
+let brandIdQuery = "SELECT * FROM brands where brand_id = $1"
+
+
+module.exports = { searchUserQuery, productDetailQuery, productsQuery, userQuery, addPreferenceQuery, addRelBrandSizeQuery, addUserShoeSizeQuery, brandQuery, brandSize, productCheckQuery, sizeListQuery, userSizeQuery, newUserQuery, profileUserSizeQuery, brandIdQuery }

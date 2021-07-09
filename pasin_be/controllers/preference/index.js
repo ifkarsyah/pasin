@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const client = require('../../database/db')
-const { addPreferenceQuery, addRelBrandSizeQuery, addUserShoeSizeQuery, profileUserSizeQuery } = require('../../database/query')
+const { addPreferenceQuery, addRelBrandSizeQuery, addUserShoeSizeQuery, profileUserSizeQuery, brandIdQuery } = require('../../database/query')
 
 router.post('/addPreference', async function(req, res){
     const { brand_id, size, loosey_size} = req.body;
@@ -59,13 +59,39 @@ router.get('/all', async function(req, res){
     const user_id = req.user.id
 
     try{
-        const resultProfileUserSize = client.query(profileUserSizeQuery, [id])
+        const resultProfileUserSize = client.query(profileUserSizeQuery, [user_id])
         const profileUserSize = (await resultProfileUserSize).rows[0]
 
-        const resultBrand = client.query(brandQuery, [profileUserSize])
-        delete profileUserSize.brand_id
+        if (profileUserSize.brand_id != null){
+            const resultBrand = await client.query(brandIdQuery, [profileUserSize.brand_id])
+            delete profileUserSize.brand_id
 
-        console.log(profileUserSize)
+            profileUserSize['brand'] = resultBrand.rows[0]
+
+            return res.status(200).json(
+                {
+                    status: 200,
+                    message: "success",
+                    data: [
+                        profileUserSize
+                    ]
+                }
+            )
+        }else{
+            delete profileUserSize.brand_id
+
+            profileUserSize['brand'] = {'brand_id': null, 'name': null}
+
+            return res.status(200).json(
+                {
+                    status: 200,
+                    message: "success",
+                    data: [
+                        profileUserSize
+                    ]
+                }
+            )
+        }
 
     }catch(error){
         res.status(500).json(
