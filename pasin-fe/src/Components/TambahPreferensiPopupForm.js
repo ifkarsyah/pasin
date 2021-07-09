@@ -21,8 +21,6 @@ function TambahPreferensiPopupForm() {
     getBrandList()
       .then(results => {
         if (mounted) {
-          console.log("aaaaaaa")
-          console.log(results)
           setBrandList(results.data)
         }
       })
@@ -36,8 +34,6 @@ function TambahPreferensiPopupForm() {
     getSizeListByBrandId(usBrand)
       .then(results => {
         if (mounted) {
-          console.log("aaaaaaa")
-          console.log(results)
           setBrandList(results.data)
         }
       })
