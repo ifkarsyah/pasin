@@ -12,4 +12,8 @@ let addRelBrandSizeQuery = "INSERT into  rel_brand_size(length) VALUES ($1) retu
 
 let addUserShoeSizeQuery =  "INSERT into rel_user_shoe_size(user_id, rel_bs_id, loosey_size) VALUES ($1, $2, $3) returning *"
 
-module.exports = { loginQuery, productDetailQuery, productsQuery, userQuery, addPreferenceQuery, addRelBrandSizeQuery, addUserShoeSizeQuery }
+let brandQuery = "SELECT * FROM brands"
+
+let brandSize = "SELECT size, brand_id FROM rel_brand_size where brand_id = $1"
+
+module.exports = { loginQuery, productDetailQuery, productsQuery, userQuery, addPreferenceQuery, addRelBrandSizeQuery, addUserShoeSizeQuery, brandQuery, brandSize }
