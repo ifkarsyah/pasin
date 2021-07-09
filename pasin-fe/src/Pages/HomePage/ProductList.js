@@ -5,10 +5,8 @@ import ProductCard from "./ProductCard";
 
 import { getProductList } from "../../API/getProductList";
 
-let productListResults = []
-
 function ProductList() {
-  const [productList, setProductList] = useState(productListResults);
+  const [productList, setProductList] = useState([]);
 
   useEffect(() => {
     let mounted = true;

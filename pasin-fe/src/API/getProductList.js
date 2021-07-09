@@ -2,13 +2,21 @@ const rootURL = 'http://localhost:8000';
 
 // Homepage
 export function getProductList() {
-  return fetch(rootURL + '/api/product/all')
+  const url = rootURL + '/api/product/all';
+  return fetch(url)
     .then(data => data.json())
 }
 
 // Product List
 export function getProductOne(productId) {
-  return fetch(rootURL + '/api/product/' + productId)
+  const url = rootURL + '/api/product/' + productId;
+  return fetch(url)
+    .then(data => data.json())
+}
+
+export function getBrandList() {
+  const url = rootURL + '/api/product/brand/all';
+  return fetch(url)
     .then(data => data.json())
 }
 

@@ -1,8 +1,11 @@
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import { react, useState } from "react";
+import { react, useState, useEffect } from "react";
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
+
+// API
+import { getBrandList } from "../API/getProductList";
 
 function TambahPreferensiPopupForm() {
 
@@ -10,6 +13,21 @@ function TambahPreferensiPopupForm() {
   const [showModal, setShowModal] = useState(false);
   const handleModalClose = () => setShowModal(false);
   const handleModalShow = () => setShowModal(true);
+
+  // brand dropdown handling
+  const [brandList, setBrandList] = useState([]);
+  useEffect(() => {
+    let mounted = true;
+    getBrandList()
+      .then(results => {
+        if (mounted) {
+          console.log("aaaaaaa")
+          console.log(results)
+          setBrandList(results.data)
+        }
+      })
+    return () => mounted = false;
+  }, [])
 
   // other option handling
 
@@ -38,10 +56,10 @@ function TambahPreferensiPopupForm() {
               <Form.Label>Brand</Form.Label>
               <Form.Control as="select">
                 <option selected disabled>Pilih Brand</option>
-                <option>Adidas</option>
-                <option>Nike</option>
-                <option>Puma</option>
-                <option>Vans</option>
+                <option>{brandList.length}</option>
+                {brandList.map(brand =>
+                  <option key={brand["brand_id"]} >{brand["name"]}</option>
+                )}
                 <option>Other</option>
               </Form.Control>
             </Form.Group>
