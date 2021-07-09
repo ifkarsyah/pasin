@@ -3,7 +3,7 @@ import Container from "react-bootstrap/Container";
 
 import ProductCard from "./ProductCard";
 
-import { getProductList } from "../../API/getProductList";
+import { getProductList } from "../../API/api";
 
 function ProductList() {
   const [productList, setProductList] = useState([]);

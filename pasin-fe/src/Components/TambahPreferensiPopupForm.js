@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 
 // API
-import { getBrandList } from "../API/getProductList";
+import { getBrandList, getSizeListByBrandId } from "../API/api";
 
 function TambahPreferensiPopupForm() {
 
@@ -31,6 +31,18 @@ function TambahPreferensiPopupForm() {
 
   // size dropdown handling
   const [sizeList, setSizeList] = useState([]);
+  useEffect(() => {
+    let mounted = true;
+    getSizeListByBrandId(usBrand)
+      .then(results => {
+        if (mounted) {
+          console.log("aaaaaaa")
+          console.log(results)
+          setBrandList(results.data)
+        }
+      })
+    return () => mounted = false;
+  }, [])
 
   // other option handling
 
@@ -74,7 +86,7 @@ function TambahPreferensiPopupForm() {
               <Form.Label>Size</Form.Label>
               <Form.Control as="select">
                 <option selected disabled>Pilih size</option>
-                {}
+                { }
               </Form.Control>
             </Form.Group>
 

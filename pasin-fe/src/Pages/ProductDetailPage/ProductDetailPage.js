@@ -9,7 +9,7 @@ import ChooseSizeForm from "./ChooseSizeForm";
 import TambahPreferensiPopupForm from "../../Components/TambahPreferensiPopupForm";
 import RecommendSize from "./RecommendSize";
 
-import { getProductOne } from "../../API/getProductList";
+import { getProductOne } from "../../API/api";
 
 
 // let productResult = {

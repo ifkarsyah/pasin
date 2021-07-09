@@ -20,4 +20,10 @@ export function getBrandList() {
     .then(data => data.json())
 }
 
-//
+export function getSizeListByBrandId(brandId) {
+  const url = rootURL + '/api/product/brand/' + brandId;
+  return fetch(url)
+    .then(data => data.json())
+}
+
+// Profile Page
