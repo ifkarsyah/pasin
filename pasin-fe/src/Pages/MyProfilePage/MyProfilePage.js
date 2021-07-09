@@ -5,10 +5,26 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import TambahPreferensiPopupForm from "../../Components/TambahPreferensiPopupForm";
 import MyPreferenceList from "./MyPreferenceList";
+import React, { useEffect, useState } from "react";
+
+import { getUser } from "../../API/api";
 
 function MyProfilePage() {
 
-  const countSizePreference = 8
+  const countSizePreference = 8;
+
+  // user profile
+  const [userProfile, setUserProfile] = useState({});
+  useEffect(() => {
+    let mounted = true;
+    getUser()
+      .then(results => {
+        if (mounted) {
+          setUserProfile(results.data[0])
+        }
+      })
+    return () => mounted = false;
+  }, [])
 
 
   return (
@@ -20,10 +36,9 @@ function MyProfilePage() {
               Gambar buyer
             </Col>
             <Col xs={8}>
-              <p>Nama: Ghazi Muharram</p>
-              <p>Tanggal Lahir: 20 April 2000</p>
-              <p>Jenis Kelamin: Pria</p>
-              <p>Email: madara@uchiha.com</p>
+              <p>Nama: {userProfile["username"]}</p>
+              <p>Tanggal Lahir: {userProfile["born_date"]}</p>
+              <p>Jenis Kelamin: {userProfile["gender"]}</p>
             </Col>
           </Row>
         </Tab>
