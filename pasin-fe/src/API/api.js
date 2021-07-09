@@ -1,6 +1,20 @@
 const rootURL = 'http://localhost:8000';
 
 const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxfSwiaWF0IjoxNjI1ODQzMDUwLCJleHAiOjE2MjU4NTAyNTB9.cG9cLrEHYlJJpryW_tNRlaARvdL64GxoOT4m7P8a9BI'
+
+// authentication
+export function authLogin(username, password) {
+  const url = rootURL + '/api/user/login';
+  return fetch(url)
+    .then(data => data.json())
+}
+
+export function authLogout() {
+  const url = rootURL + '/api/user/logout';
+  return fetch(url)
+    .then(data => data.json())
+}
+
 // all
 export function getUser(userId) {
   const url = rootURL + '/api/user';
