@@ -17,7 +17,8 @@ export default function HomePage() {
   }, []);
 
   return (
-    <Container fluid={true}>
+    // paddingTop: 70px => biar 
+    <Container fluid={true} style={{ paddingTop: "70px" }}>
       <h3 className="mt-3 mb-4">
         <span>Hello, </span>
         <span className="text-primary">{username}</span>

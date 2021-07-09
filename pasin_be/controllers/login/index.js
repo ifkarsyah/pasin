@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const client = require('../../database/db')
-const loginQuery = require('../../database/query')
+const { loginQuery } = require('../../database/query')
 const bcrypt = require('bcrypt');
 
 router.post('/', async (req, res) => {
