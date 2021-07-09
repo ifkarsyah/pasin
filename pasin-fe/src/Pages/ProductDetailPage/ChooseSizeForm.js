@@ -29,13 +29,13 @@ function ChooseSizeForm() {
 
           <Row>
             <Col>
-              <Button variant="success" size="lg" type="submit">
+              <Button variant="outline-success" size="lg" type="submit">
                 Beli
               </Button>
             </Col>
             <Col>
               <Button variant="success" size="lg" type="submit">
-                Beli
+                +Keranjang
               </Button>
             </Col>
           </Row>

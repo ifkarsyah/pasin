@@ -68,7 +68,6 @@ function ProductDetailPage() {
       <Row>
         {/* Kiri -> Gambar*/}
         <Col xs={4}>
-          <h1>Product id: {productId}</h1>
           <Image src={productOne["photo"]} rounded fluid style={{ width: "354px" }} />
         </Col>
 
@@ -83,8 +82,11 @@ function ProductDetailPage() {
         {/* Kanan -> Form */}
         <Col xs={4}>
           <ChooseSizeForm />
-          <RecommendSize />
-          <TambahPreferensiPopupForm />
+
+          <Container fluid={true} className="d-flex justify-content-between">
+            <RecommendSize />
+            <TambahPreferensiPopupForm />
+          </Container>
         </Col>
 
       </Row>

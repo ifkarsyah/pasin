@@ -11,3 +11,5 @@ export function getProductOne(productId) {
   return fetch(rootURL + '/api/product/' + productId)
     .then(data => data.json())
 }
+
+//
