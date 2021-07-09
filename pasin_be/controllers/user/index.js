@@ -6,9 +6,10 @@ const { userQuery } = require('../../database/query')
 router.get('/', async function(req, res){
     const username = 'audrey'
     const result = await client.query(userQuery,[username]);
-    res.json(
+    res.status(200).json(
         {
-            status: "success",
+            status: 200,
+            message: "Success",
             data: [result.rows[0]]
         }
     )
