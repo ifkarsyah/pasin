@@ -29,7 +29,7 @@ function App() {
             <strong>pasin</strong>
           </Navbar.Brand>
 
-          <Nav className="mr-auto">
+          <Nav className="col-xs-5">
             <Form inline >
               <FormControl name="search" type="text" placeholder="Search" />
             </Form>
