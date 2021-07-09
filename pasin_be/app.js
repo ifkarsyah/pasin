@@ -1,8 +1,11 @@
 let express = require('express')
 let app = express()
+let cors = require('cors')
 
 require('dotenv').config()
+
 app.use(express.json())
+app.use(cors())
 
 let client = require('./database/db')
 app.use(express.json())
