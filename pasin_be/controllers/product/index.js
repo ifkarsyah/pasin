@@ -137,7 +137,20 @@ router.get('/:id/recommendation', authorize, async function(req, res){
 
         let sizeLists = getQueryObject(result)
 
-        let userSize = (await client.query(userSizeQuery, [user_id])).rows[0]
+        let userSizeResult = await client.query(userSizeQuery, [user_id])
+        
+        let userSize = userSizeResult.rows[0]
+
+        if (userSizeResult.rowCount == 0){
+            return res.status(404).json(
+                {
+                    status: 404,
+                    message: "User has not set the preference",
+                    data: [
+                    ]
+                }
+            )
+        }
 
         let recommendation = calculateRecommendation(sizeLists, userSize)
 
