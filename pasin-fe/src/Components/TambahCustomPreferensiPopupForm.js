@@ -24,7 +24,7 @@ function TambahCustomPreferensiPopupForm(props) {
       .then(results => {
         if (results.status == 200) {
           setShowModal(false)
-          window.location.href = '/'
+          window.location.href = "/";
         } else {
           setShowModal(false)
         }

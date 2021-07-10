@@ -28,7 +28,11 @@ function ChooseSizeForm(props) {
             setRecommendedSize(results.data[0]["reccomendation"]);
             setUserHasPreference(true);
             setDiffLength(results.data[0]["lengthDiff"])
-          } else {
+          }else if(results.message=="No recommendation found") {
+            setUserHasPreference(true);
+            setRecommendedSize(null);
+            setDiffLength(null)
+          }else {
             setUserHasPreference(false);
             setRecommendedSize(null);
             setDiffLength(null)
@@ -65,6 +69,10 @@ function ChooseSizeForm(props) {
             <p>Kami merekomendasikan size: {recommendedSize} dengan perbedaan ukuran sebesar {diffLength} cm dari ukuranmu.</p>
           )}
 
+          {userHasPreference && recommendedSize==null && (
+            <p>Tidak ada rekomendasi ukuran untukmu pada produk ini.</p>
+          )}
+
 
           {!userHasPreference &&
             <div className="mb-5">
@@ -73,7 +81,7 @@ function ChooseSizeForm(props) {
           }
 
           <Row>
-            <Button variant="outline-success" size="lg" type="submit">
+            <Button variant="outline-success" size="sm" type="submit" style={{ marginLeft: "auto", marginRight: "1rem", width: "7rem"}}>
               Beli
             </Button>
           </Row>

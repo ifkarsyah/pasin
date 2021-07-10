@@ -8,6 +8,18 @@ import { authLogin } from "../../API/api";
 import cookies from "../../Utils/Cookies";
 
 function LoginPage({ setAuth }) {
+  const logInStyle = {
+    marginTop: '1rem',
+    backgroundColor: '#4f9d4d',
+  };
+
+  const cardStyle = {
+    display: 'block',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    width: '30rem',
+  };
+
   let history = useHistory();
 
   const [inputs, setInputs] = useState({
@@ -54,7 +66,7 @@ function LoginPage({ setAuth }) {
 
   return (
     <Container fluid={true} style={{ paddingTop: "70px" }}>
-      <Card>
+      <Card style={cardStyle}>
         <Card.Body>
           <Card.Title>Login Page</Card.Title>
           <Form>
@@ -68,7 +80,7 @@ function LoginPage({ setAuth }) {
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" name="password"  value={password} onChange={e => onChange(e)}/>
             </Form.Group>
-            <Button variant="primary" type="submit" onClick={handleSubmit}>Login</Button>
+            <Button style={logInStyle} type="submit" onClick={handleSubmit}>Login</Button>
           </Form>
           <div className="m-5">
 

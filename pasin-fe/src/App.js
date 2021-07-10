@@ -12,7 +12,7 @@ import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 
 import Homepage from "./Pages/HomePage/Homepage";
-import ProductDetailPage from "./Pages/ProductDetailPage/ProductDetailPage";
+
 import MyProfilePage from "./Pages/MyProfilePage/MyProfilePage";
 
 import { getUser, authLogout } from "./API/api";
